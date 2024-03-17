@@ -1,4 +1,4 @@
 ﻿namespace DevOps.States.Backlog {
-    public class ReadyForTestingState {
+    public class ReadyForTestingState : IBacklogState {
     }
 }

@@ -1,4 +1,4 @@
 ﻿namespace DevOps.States.Backlog {
-    public class TodoState {
+    public class TodoState : IBacklogState {
     }
 }
