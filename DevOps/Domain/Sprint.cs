@@ -1,15 +1,28 @@
 ﻿using DevOps.States;
+using DevOps.States.SprintState;
 
 namespace DevOps.Domain {
     public class Sprint {
-        public ISprintState State { get; set; }
+        public ISprintState _currentState { get; set; }
 
-        public Sprint(ISprintState state) {
-            State = state;
+        public Sprint() {
+            _currentState = new SprintCreatedState();
         }
 
-        public void Handle() {
-            State.Handle(this);
+        public void SetState(ISprintState state) {
+            _currentState = state;
+        }
+
+        public void Review() {
+            _currentState.Review(this);
+        }
+
+        public void Release() {
+            _currentState.Release(this);
+        }
+
+        public void CancelRelease() {
+            _currentState.CancelRelease(this);
         }
     }
 }
