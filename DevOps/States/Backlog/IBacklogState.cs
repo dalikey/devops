@@ -1,4 +1,4 @@
 ﻿namespace DevOps.States.Backlog {
-    public class DoneState : IBacklogState {
+    public interface IBacklogState {
     }
 }
