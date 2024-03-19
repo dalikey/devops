@@ -13,6 +13,15 @@ namespace DevOps {
             sprint.Release(); // Sprint already released, no action taken
             sprint.CancelRelease(); // Cancel the release, sprint moves back to created state
             sprint.Release(); // Sprint moves to released state again
+
+            // Define the sequence of actions in the pipeline
+            List<string> actionTypes = new List<string> { "Sources", "Package", "Build", "Test", "Analyze", "Deploy", "Utility" };
+
+            // Create a pipeline with the defined actions
+            Pipeline pipeline = new Pipeline(actionTypes);
+
+            // Execute the pipeline
+            pipeline.Execute();
         }
     }
 }
