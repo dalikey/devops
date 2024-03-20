@@ -1,4 +1,4 @@
-﻿namespace DevOps.States.Backlog {
+﻿namespace DevOps.States.BacklogState {
     public class TestingState : IBacklogState {
     }
 }

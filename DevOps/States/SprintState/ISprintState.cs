@@ -1,6 +1,6 @@
 ﻿using DevOps.Domain;
 
-namespace DevOps.States {
+namespace DevOps.States.SprintState {
     public interface ISprintState {
         void Review(Sprint sprint);
         void Release(Sprint sprint);
