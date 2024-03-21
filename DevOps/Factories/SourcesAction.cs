@@ -16,7 +16,6 @@
             return false;
         }
 
-
         //Run Action
         virtual public bool CloningRepository() {
             Console.WriteLine($"{GitURL}: Cloning Repository");

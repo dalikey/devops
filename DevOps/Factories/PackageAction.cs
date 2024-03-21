@@ -22,7 +22,5 @@
             Console.WriteLine($"{Dependencies}: Installing dependencies");
             return true;
         }
-
-
     }
 }

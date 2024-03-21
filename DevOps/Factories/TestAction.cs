@@ -32,7 +32,6 @@
                 Console.WriteLine($"{TestFramework}: Publishing Test Results");
                 return true; 
             }
-
         }
     }
 }
