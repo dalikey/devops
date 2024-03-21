@@ -1,4 +1,4 @@
-﻿using DevOps.Domain;
+using DevOps.Domain;
 using System;
 
 namespace DevOps.States.BacklogState {

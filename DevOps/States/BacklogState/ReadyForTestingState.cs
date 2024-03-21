@@ -1,4 +1,4 @@
-﻿using DevOps.Domain;
+using DevOps.Domain;
 
 namespace DevOps.States.BacklogState {
     public class ReadyForTestingState : IBacklogState {

@@ -1,6 +1,5 @@
-﻿namespace DevOps.States.BacklogState {
+namespace DevOps.States.BacklogState {
     public interface IBacklogState {
-
         public void StartTask();
         public void StopTask();
         public int FinishTask();
