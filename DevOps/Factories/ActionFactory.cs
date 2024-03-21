@@ -1,6 +1,6 @@
 ﻿namespace DevOps.Factories {
-    public class ActionFactory {
-        public static IAction CreateAction(string actionType) {
+    public class ActionFactory : IActionFactory {
+        public IActionVisitor CreateAction(string actionType) {
             switch (actionType) {
                 case "Sources":
                     return new SourcesAction();
@@ -11,7 +11,7 @@
                 case "Test":
                     return new TestAction();
                 case "Analyze":
-                    return new AnalyzeAction();
+                    return new AnalyseAction();
                 case "Deploy":
                     return new DeployAction();
                 case "Utility":
