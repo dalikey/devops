@@ -20,5 +20,9 @@
                     throw new ArgumentException("Invalid action type");
             }
         }
+
+        public void Execute() {
+            Console.WriteLine("Executed");
+        }
     }
 }
