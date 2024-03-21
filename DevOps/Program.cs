@@ -30,11 +30,18 @@ namespace DevOps {
             // Create basic report
             IReport basicReport = new BasicReport();
 
-            // Decorate basic report with header, footer, and format
-            IReport decoratedReport = new FormatDecorator(new FooterDecorator(new HeaderDecorator(basicReport, "Header info"), "Footer info"), "PDF");
+            // Add header and footer with additional information
+            var companyName = "Your Company";
+            var projectName = "Your Project";
+            var version = "1.0";
+            var date = DateTime.Now;
 
-            // Generate decorated report
-            decoratedReport.GenerateReport();
+            IReport reportWithHeaderAndFooter = new FooterDecorator(
+                                                    new HeaderDecorator(basicReport, companyName, projectName, version, date),
+                                                    companyName, projectName, version, date);
+
+            // Generate the report with header and footer
+            reportWithHeaderAndFooter.GenerateReport();
 
             Console.WriteLine("\n-----------------------");
             // Create instances of adapters
