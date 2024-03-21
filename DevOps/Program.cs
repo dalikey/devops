@@ -17,30 +17,47 @@ namespace DevOps {
             sprint.Release(); // Sprint moves to released state again
 
             Console.WriteLine("\n-----------------------");
-            // Define the sequence of actions in the pipeline
-            List<string> actionTypes = new List<string> { "Sources", "Package", "Build", "Test", "Analyze", "Deploy", "Utility" };
-
-            // Create a pipeline with the defined actions
-            Pipeline pipeline = new Pipeline(actionTypes);
-
-            // Execute the pipeline
-            pipeline.Execute();
-
-            Console.WriteLine("\n-----------------------");
-            // Create basic report
-            IReport basicReport = new BasicReport();
-
-            // Add header and footer with additional information
+            // Mock data for header and footer
             var companyName = "Your Company";
             var projectName = "Your Project";
             var version = "1.0";
             var date = DateTime.Now;
 
+            // Mock data for sprint information
+            var sprints = new List<(string, TeamComposition, BurndownChart, List<DeveloperEffortPoints>)>();
+
+            var sprint1 = (
+                "Sprint 1",
+                new TeamComposition { TeamName = "Team Alpha", Developers = new List<string> { "Developer A", "Developer B", "Developer C" } },
+                new BurndownChart { RemainingEffort = new List<int> { 10, 8, 6, 4, 2 }, SprintStartDate = DateTime.Now.AddDays(-7), SprintEndDate = DateTime.Now.AddDays(7) },
+                new List<DeveloperEffortPoints> {
+                new DeveloperEffortPoints { DeveloperName = "Developer A", EffortPoints = 20 },
+                new DeveloperEffortPoints { DeveloperName = "Developer B", EffortPoints = 18 },
+                new DeveloperEffortPoints { DeveloperName = "Developer C", EffortPoints = 15 }
+                }
+            );
+
+            var sprint2 = (
+                "Sprint 2",
+                new TeamComposition { TeamName = "Team Beta", Developers = new List<string> { "Developer X", "Developer Y", "Developer Z" } },
+                new BurndownChart { RemainingEffort = new List<int> { 8, 6, 4, 2, 1 }, SprintStartDate = DateTime.Now.AddDays(-14), SprintEndDate = DateTime.Now.AddDays(-7) },
+                new List<DeveloperEffortPoints> {
+                new DeveloperEffortPoints { DeveloperName = "Developer X", EffortPoints = 25 },
+                new DeveloperEffortPoints { DeveloperName = "Developer Y", EffortPoints = 22 },
+                new DeveloperEffortPoints { DeveloperName = "Developer Z", EffortPoints = 18 }
+                }
+            );
+
+            sprints.Add(sprint1);
+            sprints.Add(sprint2);
+
+            // Create a basic report with header and footer
+            IReport basicReport = new BasicReport(sprints);
             IReport reportWithHeaderAndFooter = new FooterDecorator(
                                                     new HeaderDecorator(basicReport, companyName, projectName, version, date),
                                                     companyName, projectName, version, date);
 
-            // Generate the report with header and footer
+            // Generate the report
             reportWithHeaderAndFooter.GenerateReport();
 
             Console.WriteLine("\n-----------------------");

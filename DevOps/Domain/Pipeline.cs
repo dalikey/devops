@@ -1,22 +1,15 @@
-﻿using DevOps.Factories;
+using DevOps.Factories;
 
 namespace DevOps.Domain {
     public class Pipeline {
-        private List<IActionFactory> actions;
+         private List<IActionVisitor> actions;
 
         public Pipeline(List<string> actionTypes) {
-            actions = new List<IActionFactory>();
+            actions = new List<IActionVisitor>();
+            var actionFactory = new ActionFactory();
             foreach (var type in actionTypes) {
-                var factory = new ActionFactory();
-                actions.Add((IActionFactory)factory.CreateAction(type));
+                actions.Add(actionFactory.CreateAction(type));
             }
-        }
-
-        public void Execute() {
-            foreach (var action in actions) {
-                action.Execute();
-            }
-            Console.WriteLine("Pipeline execution completed.");
         }
     }
 }

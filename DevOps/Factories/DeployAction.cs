@@ -17,13 +17,10 @@
             return false;
         }
 
-
-
         //Run Action
         virtual public bool RunDeploymentTarget() {
             Console.WriteLine($"{DeploymentTarget}: Executing deployment tool");
             return true;
         }
-
     }
 }
