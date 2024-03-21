@@ -1,11 +1,15 @@
 ﻿using DevOps.Domain;
 
-namespace DevOps.States.Backlog {
-    public class TestingState : IBacklogState {
+namespace DevOps.States.BacklogState {
+    public class TodoState : IBacklogState {
         private readonly BacklogItem _backlogItem;
 
-        public TestingState(BacklogItem backlogItem) {
+        public TodoState(BacklogItem backlogItem) {
             _backlogItem = backlogItem;
+        }
+
+        public void StartTask() {
+            _backlogItem.UpdateState(new DoingState(_backlogItem));
         }
 
         public int FinishTask() => 0;
@@ -18,19 +22,7 @@ namespace DevOps.States.Backlog {
             Console.WriteLine("Item hasn't started yet..");
         }
 
-        public int SendTestReport(bool passed) {
-            if (!passed) {
-                _backlogItem.UpdateState(new TodoState(_backlogItem));
-                return _backlogItem.NotifyScrumMaster();
-            } else {
-                _backlogItem.UpdateState(new TestedState(_backlogItem));
-                return 0;
-            }
-        }
-
-        public void StartTask() {
-            Console.WriteLine("Item hasn't started yet..");
-        }
+        public int SendTestReport(bool passed) => 0;
 
         public void StartTesting() {
             Console.WriteLine("Item hasn't started yet..");

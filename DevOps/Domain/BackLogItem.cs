@@ -1,5 +1,5 @@
 ﻿using DevOps.Domain.Roles;
-using DevOps.States.Backlog;
+using DevOps.States.BacklogState;
 
 namespace DevOps.Domain {
     public class BacklogItem {

@@ -1,10 +1,10 @@
 ﻿using DevOps.Domain;
 
-namespace DevOps.States.Backlog {
-    public class TestedState : IBacklogState {
+namespace DevOps.States.BacklogState {
+    public class ReadyForTestingState : IBacklogState {
         private readonly BacklogItem _backlogItem;
 
-        public TestedState(BacklogItem backlogItem) {
+        public ReadyForTestingState(BacklogItem backlogItem) {
             _backlogItem = backlogItem;
         }
 
@@ -15,11 +15,7 @@ namespace DevOps.States.Backlog {
         }
 
         public void ReviewTestReport(bool passed) {
-            if (!passed) {
-                _backlogItem.UpdateState(new ReadyForTestingState(_backlogItem));
-            } else {
-                _backlogItem.UpdateState(new DoneState(_backlogItem));
-            }
+            Console.WriteLine("Item hasn't started yet..");
         }
 
         public int SendTestReport(bool passed) => 0;
@@ -29,7 +25,7 @@ namespace DevOps.States.Backlog {
         }
 
         public void StartTesting() {
-            Console.WriteLine("Item hasn't started yet..");
+            _backlogItem.UpdateState(new TestingState(_backlogItem));
         }
 
         public void StopTask() {
