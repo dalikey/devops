@@ -7,7 +7,8 @@ namespace DevOps.Domain {
         public Pipeline(List<string> actionTypes) {
             actions = new List<IActionFactory>();
             foreach (var type in actionTypes) {
-                actions.Add(ActionFactory.CreateAction(type));
+                var factory = new ActionFactory();
+                actions.Add((IActionFactory)factory.CreateAction(type));
             }
         }
 
