@@ -1,4 +1,5 @@
-﻿using DevOps.Decorators;
+﻿using DevOps.Adapters;
+using DevOps.Decorators;
 using DevOps.Domain;
 using System.Diagnostics.CodeAnalysis;
 
@@ -34,6 +35,17 @@ namespace DevOps {
 
             // Generate decorated report
             decoratedReport.GenerateReport();
+
+            Console.WriteLine("\n-----------------------");
+            // Create instances of adapters
+            IMediaAdapter emailAdapter = new EmailAdapter();
+            IMediaAdapter slackAdapter = new SlackAdapter();
+            IMediaAdapter smsAdapter = new SmsAdapter();
+
+            // Send notifications using each adapter
+            emailAdapter.SendNotification("Hello from email adapter");
+            slackAdapter.SendNotification("Hello from Slack adapter");
+            smsAdapter.SendNotification("Hello from SMS adapter");
         }
     }
 }
