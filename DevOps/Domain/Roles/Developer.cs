@@ -1,10 +1,17 @@
 ﻿using DevOps.Strategies;
+using DevOps.Strategies.Behaviours;
 
 namespace DevOps.Domain.Roles {
-    public class Developer : IRoleStrategy {
+    public class Developer : Person { 
 
-        public void PerformRole() {
-            Console.WriteLine("Perform developer action");
+        public IRoleStrategy roleStrategy { get; set; }
+
+        public Developer() {
+            roleStrategy = new Coding();
+        }
+
+        public void Work() {
+            roleStrategy.PerformRole();
         }
     }
 }
