@@ -10,16 +10,15 @@ namespace DevOps.States.BacklogState {
         }
 
         public int FinishTask() {
-            // Implement activities here.
             return 0;
         }
 
         public void InvalidateTask() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Task cannot be invalidated while it's in progress.");
         }
 
         public void ReviewTestReport(bool passed) {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Cannot review test report until the task is completed.");
         }
 
         public int SendTestReport(bool passed) {
@@ -27,19 +26,19 @@ namespace DevOps.States.BacklogState {
         }
 
         public void StartTask() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Task is already in progress.");
         }
 
         public void StartTesting() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Testing cannot be started until the task is completed.");
         }
 
         public void StopTask() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Task has been stopped.");
         }
 
         public void StopTesting() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Testing cannot be stopped until the task is completed.");
         }
     }
 }

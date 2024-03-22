@@ -11,17 +11,16 @@ namespace DevOps.States.BacklogState {
         public int FinishTask() => 0;
 
         public void InvalidateTask() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Cannot invalidate task because it hasn't started yet.");
         }
 
         public void ReviewTestReport(bool passed) {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Cannot review test report because the task hasn't started yet.");
         }
-
         public int SendTestReport(bool passed) => 0;
 
         public void StartTask() {
-            Console.WriteLine("Item hasn't started yet..");
+           Console.WriteLine("Cannot start the task again as it's already ready for testing.");
         }
 
         public void StartTesting() {
@@ -29,11 +28,11 @@ namespace DevOps.States.BacklogState {
         }
 
         public void StopTask() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Cannot stop the task as it hasn't started yet.");
         }
 
         public void StopTesting() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Cannot stop testing because the task hasn't started yet.");
         }
     }
 }
