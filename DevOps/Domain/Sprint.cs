@@ -1,5 +1,4 @@
-﻿using DevOps.States;
-using DevOps.States.SprintState;
+﻿using DevOps.States.SprintState;
 
 namespace DevOps.Domain {
     public class Sprint {

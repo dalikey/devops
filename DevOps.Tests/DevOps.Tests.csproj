@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DevOps\DevOps.csproj" />
+  </ItemGroup>
+
 </Project>
