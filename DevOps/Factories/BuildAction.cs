@@ -21,6 +21,5 @@
             Console.WriteLine($"{BuildType}: Executing");
             return true;
         }
-
     }
 }
