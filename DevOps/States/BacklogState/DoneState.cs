@@ -11,29 +11,30 @@ namespace DevOps.States.BacklogState {
         public int FinishTask() => 0;
 
         public void InvalidateTask() {
+            Console.WriteLine("Task is already completed and cannot be invalidated.");
             _backlogItem.UpdateState(new TodoState(_backlogItem));
         }
 
         public void ReviewTestReport(bool passed) {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Cannot review test report because the task is already completed.");
         }
 
         public int SendTestReport(bool passed) => 0;
 
         public void StartTask() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Task is already completed.");
         }
 
         public void StartTesting() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Cannot start testing because the task is already completed.");
         }
 
         public void StopTask() {
-            _backlogItem.UpdateState(new DoneState(_backlogItem));
+            Console.WriteLine("Task is already completed.");
         }
 
         public void StopTesting() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Testing cannot be stopped because the task is already completed.");
         }
     }
 }
