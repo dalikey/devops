@@ -7,11 +7,11 @@ namespace DevOps.Domain.Roles {
         public IRoleStrategy roleStrategy { get; set; }
 
         public Developer() {
-            RoleStrategy = new Coding();
+            roleStrategy = new Coding();
         }
 
         public void Work() {
-            RoleStrategy.PerformRole();
+            roleStrategy.PerformRole();
         }
     }
 }
