@@ -1,6 +1,6 @@
 ﻿namespace DevOps.Factories {
     public class SourcesAction : IActionComponent, IActionVisitor {
-        public string GitURL { get; private set; }
+        public string GitURL { get; set; }
 
         public bool VisitSources(SourcesAction sourcesAction) => false;
 
