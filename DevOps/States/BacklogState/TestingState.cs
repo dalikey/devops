@@ -11,37 +11,39 @@ namespace DevOps.States.BacklogState {
         public int FinishTask() => 0;
 
         public void InvalidateTask() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Cannot invalidate task while it's being tested.");
         }
 
         public void ReviewTestReport(bool passed) {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Cannot review test report while the task is being tested.");
         }
 
         public int SendTestReport(bool passed) {
             if (!passed) {
+                Console.WriteLine("Test report indicates failure. Moving back to todo state.");
                 _backlogItem.UpdateState(new TodoState(_backlogItem));
                 return _backlogItem.NotifyScrumMaster();
             } else {
+                Console.WriteLine("Test report indicates success. Moving to tested state.");
                 _backlogItem.UpdateState(new TestedState(_backlogItem));
                 return 0;
             }
         }
 
         public void StartTask() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Cannot start the task again as it's already being tested.");
         }
 
         public void StartTesting() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Cannot start testing again as the task is already being tested.");
         }
 
         public void StopTask() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Cannot stop the task as it's already being tested.");
         }
 
         public void StopTesting() {
-            Console.WriteLine("Item hasn't started yet..");
+            Console.WriteLine("Cannot stop testing as the task is already being tested.");
         }
     }
 }
