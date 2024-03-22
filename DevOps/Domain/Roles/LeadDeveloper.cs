@@ -1,9 +1,10 @@
 ﻿using DevOps.Strategies;
 
 namespace DevOps.Domain.Roles {
-    public class Tester : IRoleStrategy {
+    public class LeadDeveloper : IRoleStrategy {
+
         public void PerformRole() {
-            Console.WriteLine("Perform tester action");
+            Console.WriteLine("Perform lead developer action");
         }
     }
 }
