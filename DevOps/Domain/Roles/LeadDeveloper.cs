@@ -1,10 +1,18 @@
 ﻿using DevOps.Strategies;
+using DevOps.Strategies.Behaviours;
 
 namespace DevOps.Domain.Roles {
-    public class LeadDeveloper : IRoleStrategy {
+    public class LeadDeveloper : Person {
 
-        public void PerformRole() {
-            Console.WriteLine("Perform lead developer action");
+        public IRoleStrategy roleStrategy;
+
+        public LeadDeveloper() {
+            roleStrategy = new Managing();
         }
+
+        public void Work() {
+            roleStrategy.PerformRole();
+        }
+
     }
 }

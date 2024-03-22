@@ -1,9 +1,18 @@
 ﻿using DevOps.Strategies;
+using DevOps.Strategies.Behaviours;
 
 namespace DevOps.Domain.Roles {
-    public class ProductOwner : IRoleStrategy {
-        public void PerformRole() {
-            Console.WriteLine("Perform productowner action");
+    public class ProductOwner : Person {
+
+        public IRoleStrategy roleStrategy;
+
+        public ProductOwner() {
+            roleStrategy = new Managing();
+        }
+
+        public void Work() {
+            roleStrategy.PerformRole();
         }
     }
-}
+    }
+

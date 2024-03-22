@@ -1,10 +1,10 @@
 ﻿using DevOps.Strategies;
 
 namespace DevOps.Domain.Roles {
-    public class User : IRoleStrategy {
+    public class User : Person {
 
-        public void PerformRole() {
-            Console.WriteLine("Perform user action");
+       public void Use() {
+            Console.WriteLine("Using...");
         }
     }
 }
