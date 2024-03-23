@@ -18,6 +18,10 @@ namespace DevOps.States.BacklogState {
         public void InvalidateTask() {
             Console.WriteLine("Task cannot be invalidated as it's still in the to-do state.");
         }
+        public void MarkAsDone() {
+            _backlogItem.UpdateState(new DoneState(_backlogItem));
+            Console.WriteLine("Backlog item marked as done.");
+        }
 
         public void ReviewTestReport(bool passed) {
             Console.WriteLine("Cannot review test report as the task hasn't been started yet.");

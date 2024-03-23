@@ -23,6 +23,10 @@ namespace DevOps.States.BacklogState {
             Console.WriteLine("Task cannot be invalidated while it's in progress.");
         }
 
+        public void MarkAsDone() {
+            Console.WriteLine("Cannot mark as done while the task is in progress.");
+        }
+
         public void ReviewTestReport(bool passed) {
             Console.WriteLine("Cannot review test report until the task is completed.");
         }
