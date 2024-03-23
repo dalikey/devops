@@ -1,6 +1,5 @@
 ﻿using DevOps.Domain.Roles;
 using DevOps.States.BacklogState;
-using System.Diagnostics;
 
 namespace DevOps.Domain {
     public class BacklogItem {
@@ -33,9 +32,6 @@ namespace DevOps.Domain {
                 return 0;
             }
         }
-
-
-
 
         public void StartTask() => BacklogState.StartTask();
         public void StopTask() => BacklogState.StopTask();

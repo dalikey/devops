@@ -1,6 +1,4 @@
-﻿using DevOps.Strategies;
-
-namespace DevOps.Domain {
+﻿namespace DevOps.Domain {
     public abstract class Person {
         public int Id { get; set; }
         public string Username { get; set; }
@@ -8,4 +6,3 @@ namespace DevOps.Domain {
         public string Name { get; set; }
     }
 }
-

@@ -1,9 +1,6 @@
-﻿using DevOps.Strategies;
-
-namespace DevOps.Domain.Roles {
+﻿namespace DevOps.Domain.Roles {
     public class User : Person {
-
-       public void Use() {
+        public void Use() {
             Console.WriteLine("Using...");
         }
     }

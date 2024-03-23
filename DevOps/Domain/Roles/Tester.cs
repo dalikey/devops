@@ -3,7 +3,6 @@ using DevOps.Strategies.Behaviours;
 
 namespace DevOps.Domain.Roles {
     public class Tester : Person {
-
         public IRoleStrategy roleStrategy;
 
         public Tester() {
@@ -13,6 +12,5 @@ namespace DevOps.Domain.Roles {
         public void Work() {
             roleStrategy.PerformRole();
         }
-
     }
 }

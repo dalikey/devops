@@ -1,6 +1,5 @@
 ﻿using DevOps.Domain.Roles;
 using DevOps.States.BacklogState;
-using System.Runtime.CompilerServices;
 
 namespace DevOps.Domain {
     public class DiscussionThread {
@@ -23,10 +22,10 @@ namespace DevOps.Domain {
             Comments = comments;
         }
 
-
         public List<Message> getMessages() {
             return this.Messages;
         }
+
         public int NotifyAll(DiscussionComment comment) {
             if (NotificationCallBack != null) {
                 foreach (Type role in new Type[] { typeof(ScrumMaster), typeof(LeadDeveloper), typeof(Developer), typeof(ProductOwner), typeof(Tester) }) {
@@ -60,4 +59,3 @@ namespace DevOps.Domain {
         }
     }
 }
-
