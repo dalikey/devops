@@ -9,12 +9,22 @@ namespace DevOps.Domain {
         public Sprint Sprint { get; set; }
         public List<DiscussionThread> DiscussionThreads { get; set; }
         public List<Activity> Activities { get; set; }
+
+        public Developer Developer { get; set; }
         public IBacklogState BacklogState { get; set; }
         public Func<string, Type, int> NotificationCallBack { get; set; }
 
         public BacklogItem() {
             BacklogState = new TodoState(this);
             Activities = new();
+        }
+
+        public void AddActivity(Activity activity) {
+            Activities.Add(activity);
+        }
+
+        public void RemoveActivity(Activity activity) { 
+            Activities.Remove(activity);
         }
 
         public int NotifyScrumMaster() {
