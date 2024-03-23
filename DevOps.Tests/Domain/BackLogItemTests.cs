@@ -54,7 +54,7 @@ namespace DevOps.Tests.Domain {
             backLogItem.NotificationCallBack = mockCallBack.Object;
 
             //Act
-            backLogItem.NotifyScrumMaster();
+            backLogItem.NotifyTesters();
 
             //Assert
             mockCallBack.Verify(x => x.Invoke("Item has been rejected. Item has been put back in ToDo", typeof(Tester)));

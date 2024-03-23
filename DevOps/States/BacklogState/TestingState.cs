@@ -20,7 +20,11 @@ namespace DevOps.States.BacklogState {
         }
 
         public void ReviewTestReport(bool passed) {
-            Console.WriteLine("Cannot review test report while the task is being tested.");
+            if (passed) {
+                _backlogItem.BacklogState = new TestedState(_backlogItem);
+            } else {
+                Console.WriteLine("Test failed. Cannot update state.");
+            }
         }
 
         public int SendTestReport(bool passed) {
