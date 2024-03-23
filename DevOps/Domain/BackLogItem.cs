@@ -1,5 +1,7 @@
 ﻿using DevOps.Domain.Roles;
+using DevOps.Observers;
 using DevOps.States.BacklogState;
+using System.Xml.Linq;
 
 namespace DevOps.Domain {
     public class BacklogItem {
@@ -10,27 +12,15 @@ namespace DevOps.Domain {
         public List<DiscussionThread> DiscussionThreads { get; set; }
         public List<Activity> Activities { get; set; }
         public IBacklogState BacklogState { get; set; }
-        public Func<string, Type, int> NotificationCallBack { get; set; }
-
-        public BacklogItem() {
+        public NotificationService NotificationService { get; set; }
+        public BacklogItem(NotificationService notificationService) {
+            Id = 0; Title = "";
+            Description = "";
+            Sprint = null;
+            DiscussionThreads = new List<DiscussionThread>();
+            Activities = new List<Activity>();
             BacklogState = new TodoState(this);
-            Activities = new();
-        }
-
-        public int NotifyScrumMaster() {
-            if (NotificationCallBack != null) {
-                return NotificationCallBack("Item has been rejected. Item has been put back in ToDo", typeof(ScrumMaster));
-            } else {
-                return 0;
-            }
-        }
-
-        public int NotifyTesters() {
-            if (NotificationCallBack != null) {
-                return NotificationCallBack("Item has been rejected. Item has been put back in ToDo", typeof(Tester));
-            } else {
-                return 0;
-            }
+            NotificationService = notificationService;
         }
 
         public void StartTask() => BacklogState.StartTask();
@@ -41,5 +31,26 @@ namespace DevOps.Domain {
         public void SendTestReport(bool passed) => BacklogState.SendTestReport(passed);
         public void ReviewTestReport(bool passed) => BacklogState.ReviewTestReport(passed);
         public void UpdateState(IBacklogState newBacklogState) => BacklogState = newBacklogState;
+
+
+        private void NotifyRole(string message, Person person) {
+            NotificationService.NotifyObservers($"[{person.Name}]: {message}");
+        }
+
+        public void NotifyScrumMaster() {
+            NotifyRole("Item has been rejected. Item has been put back in ToDo", new ScrumMaster());
+        }
+
+        public void NotifyTesters() {
+            NotifyRole("Item has been rejected. Item has been put back in ToDo", new Tester());
+        }
+
+        public void AttachObserver(INotificationObserver observer) {
+            NotificationService.Attach(observer);
+        }
+
+        public void DetachObserver(INotificationObserver observer) {
+            NotificationService.Detach(observer);
+        }
     }
 }

@@ -9,14 +9,13 @@ namespace DevOps.States.BacklogState {
             _backlogItem = backlogItem;
         }
 
-        public int FinishTask() {
+        public void FinishTask() {
             if (_backlogItem.Activities.All(a => a.IsFinished)) {
                 _backlogItem.UpdateState(new ReadyForTestingState(_backlogItem));
-                return _backlogItem.NotifyTesters();
+                _backlogItem.NotifyTesters();
             }
 
             Console.WriteLine("All activities are not finished!");
-            return 0;
         }
 
         public void InvalidateTask() {
@@ -27,8 +26,8 @@ namespace DevOps.States.BacklogState {
             Console.WriteLine("Cannot review test report until the task is completed.");
         }
 
-        public int SendTestReport(bool passed) {
-            return 0;
+        public void SendTestReport(bool passed) {
+            _backlogItem.SendTestReport(passed);
         }
 
         public void StartTask() {

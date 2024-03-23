@@ -1,4 +1,4 @@
-﻿using DevOps.Domain.Roles;
+﻿using DevOps.Observers;
 using DevOps.States.BacklogState;
 
 namespace DevOps.Domain {
@@ -10,9 +10,9 @@ namespace DevOps.Domain {
         public List<Message> Messages { get; set; }
         public Person Person { get; set; }
         public List<DiscussionComment> Comments;
-        public Func<string, Type, int> NotificationCallBack { get; set; }
+        public NotificationService NotificationService { get; set; }
 
-        public DiscussionThread(int id, string title, string description, BacklogItem relatedBackLogItem, List<Message> messages, Person person, List<DiscussionComment> comments) {
+        public DiscussionThread(int id, string title, string description, BacklogItem relatedBackLogItem, List<Message> messages, Person person, List<DiscussionComment> comments, NotificationService notificationService) {
             Id = id;
             Title = title;
             Description = description;
@@ -20,21 +20,11 @@ namespace DevOps.Domain {
             Messages = messages;
             Person = person;
             Comments = comments;
+            NotificationService = notificationService;
         }
 
         public List<Message> getMessages() {
             return this.Messages;
-        }
-
-        public int NotifyAll(DiscussionComment comment) {
-            if (NotificationCallBack != null) {
-                foreach (Type role in new Type[] { typeof(ScrumMaster), typeof(LeadDeveloper), typeof(Developer), typeof(ProductOwner), typeof(Tester) }) {
-                    NotificationCallBack("A Comment has been sent for a backlog item.", role);
-                }
-                return 1;
-            } else {
-                return 0;
-            }
         }
 
         public void AddComment(DiscussionComment comment) {
@@ -44,6 +34,10 @@ namespace DevOps.Domain {
 
             Comments.Add(comment);
             NotifyAll(comment);
+        }
+
+        private void NotifyAll(DiscussionComment comment) {
+            NotificationService.NotifyObservers($"A comment has been added for backlog item {RelatedBacklogItem.Id}: {comment.Text}");
         }
 
         public bool SprintStateIsFinished() {

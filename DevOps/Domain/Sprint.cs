@@ -1,4 +1,5 @@
-﻿using DevOps.States.SprintState;
+﻿using DevOps.Observers;
+using DevOps.States.SprintState;
 
 namespace DevOps.Domain {
     public class Sprint {
@@ -8,9 +9,19 @@ namespace DevOps.Domain {
         public DateTime EndDate { get; set; }
         public List<BacklogItem> BacklogItems { get; set; }
         public ISprintState _currentState { get; set; }
+        private IPublisher NotificationService { get; set; }
 
         public Sprint() {
+            BacklogItems = new List<BacklogItem>();
             _currentState = new SprintCreatedState();
+        }
+
+        public void AttachObserver(INotificationObserver observer) {
+            NotificationService.Attach(observer);
+        }
+
+        public void DetachObserver(INotificationObserver observer) {
+            NotificationService.Detach(observer);
         }
 
         public void SetState(ISprintState state) {
