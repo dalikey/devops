@@ -1,6 +1,7 @@
 ﻿using DevOps.Adapters;
 using DevOps.Decorators;
 using DevOps.Domain;
+using DevOps.Factories;
 using System.Diagnostics.CodeAnalysis;
 
 namespace DevOps {
@@ -70,6 +71,27 @@ namespace DevOps {
             emailAdapter.SendNotification("Hello from email adapter");
             slackAdapter.SendNotification("Hello from Slack adapter");
             smsAdapter.SendNotification("Hello from SMS adapter");
+
+            Console.WriteLine("\n-----------------------");
+            // Create instances of different action components
+            var actions = new List<IActionComponent> {
+                new AnalyseAction { AnalyseTool = "CodeAnalyzer" },
+                new DeployAction { DeploymentTarget = "Production" },
+                new PackageAction { Dependencies = new List<string> { "Dependency1", "Dependency2" } },
+                new BuildAction { BuildType = "Release" },
+                new SourcesAction { GitURL = "https://github.com/yourrepository.git" },
+                new TestAction { TestFramework = "NUnit" },
+                new UtilityAction { Actions = new List<string> { "Action1", "Action2" } },
+                new DeploymentPipeline()
+            };
+
+            // Create an instance of ActionVisitor
+            var visitor = new ActionVisitor();
+
+            // Iterate through each action component and accept the visitor
+            foreach (var action in actions) {
+                action.AcceptVisitor(visitor);
+            }
         }
     }
 }

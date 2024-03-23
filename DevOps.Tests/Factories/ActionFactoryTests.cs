@@ -1,9 +1,12 @@
 ﻿using DevOps.Factories;
 
-namespace DevOps.Tests {
-    public class ActionFactoryTests {
+namespace DevOps.Tests.Factories
+{
+    public class ActionFactoryTests
+    {
         [Fact]
-        public void CreateAction_Should_Return_Correct_Action() {
+        public void CreateAction_Should_Return_Correct_Action()
+        {
             // Arrange
             var factory = new ActionFactory();
 
@@ -27,7 +30,8 @@ namespace DevOps.Tests {
         }
 
         [Fact]
-        public void Execute_Should_Write_To_Console() {
+        public void Execute_Should_Write_To_Console()
+        {
             // Arrange
             var factory = new ActionFactory();
 
@@ -42,7 +46,8 @@ namespace DevOps.Tests {
         }
 
         [Fact]
-        public void RunAnalysis_Should_Write_To_Console() {
+        public void RunAnalysis_Should_Write_To_Console()
+        {
             // Arrange
             var analyseAction = new AnalyseAction { AnalyseTool = "StyleCop" };
 
@@ -59,7 +64,8 @@ namespace DevOps.Tests {
 
 
         [Fact]
-        public void RunBuild_Should_Write_To_Console() {
+        public void RunBuild_Should_Write_To_Console()
+        {
             // Arrange
             var buildAction = new BuildAction { BuildType = "MSBuild" };
 
@@ -76,7 +82,8 @@ namespace DevOps.Tests {
 
 
         [Fact]
-        public void RunDeploymentTarget_Should_Write_To_Console() {
+        public void RunDeploymentTarget_Should_Write_To_Console()
+        {
             // Arrange
             var deployAction = new DeployAction { DeploymentTarget = "Azure" };
 
@@ -93,7 +100,8 @@ namespace DevOps.Tests {
 
 
         [Fact]
-        public void CloningRepository_Should_Write_To_Console() {
+        public void CloningRepository_Should_Write_To_Console()
+        {
             // Arrange
             var sourcesAction = new SourcesAction { GitURL = "https://github.com/repository" };
 
@@ -110,7 +118,8 @@ namespace DevOps.Tests {
         }
 
         [Fact]
-        public void RunTests_Should_Write_To_Console() {
+        public void RunTests_Should_Write_To_Console()
+        {
             // Arrange
             var testAction = new TestAction { TestFramework = "NUnit" };
 
@@ -126,7 +135,8 @@ namespace DevOps.Tests {
         }
 
         [Fact]
-        public void PublishTestResults_Should_Write_To_Console() {
+        public void PublishTestResults_Should_Write_To_Console()
+        {
             // Arrange
             var testAction = new TestAction { FinishedTests = true, TestFramework = "NUnit" };
 
@@ -142,7 +152,8 @@ namespace DevOps.Tests {
         }
 
         [Fact]
-        public void RunUtilityActions_Should_Write_To_Console() {
+        public void RunUtilityActions_Should_Write_To_Console()
+        {
             // Arrange
             var utilityAction = new UtilityAction { Actions = new List<string> { "Clean", "Prepare" } };
 
