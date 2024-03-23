@@ -1,4 +1,4 @@
-﻿namespace DevOps.Factories {
+﻿namespace DevOps.Visitors {
     public interface IActionComponent {
         public bool AcceptVisitor(IActionVisitor visitor);
     }

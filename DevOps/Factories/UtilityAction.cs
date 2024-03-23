@@ -1,4 +1,6 @@
-﻿namespace DevOps.Factories {
+﻿using DevOps.Visitors;
+
+namespace DevOps.Factories {
     public class UtilityAction : IActionComponent {
         public List<String> Actions { get; set; } = new List<String>();
 

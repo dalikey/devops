@@ -1,4 +1,6 @@
-﻿namespace DevOps.Factories {
+﻿using DevOps.Factories;
+
+namespace DevOps.Visitors {
     public class ActionVisitor : IActionVisitor {
         public bool Visit(AnalyseAction analyseAction) {
             Console.WriteLine($"{analyseAction.AnalyseTool}: Executing code analysis");

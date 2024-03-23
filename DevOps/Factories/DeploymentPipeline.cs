@@ -1,4 +1,5 @@
-﻿
+﻿using DevOps.Visitors;
+
 namespace DevOps.Factories {
     public class DeploymentPipeline : IActionComponent {
         public bool AcceptVisitor(IActionVisitor visitor) {
