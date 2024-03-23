@@ -1,8 +1,9 @@
 using DevOps.Factories;
+using DevOps.Visitors;
 
 namespace DevOps.Domain {
     public class Pipeline {
-         private List<IActionComponent> actions;
+        private List<IActionComponent> actions;
 
         public Pipeline(List<string> actionTypes) {
             actions = new List<IActionComponent>();

@@ -1,4 +1,6 @@
-﻿namespace DevOps.Factories {
+﻿using DevOps.Visitors;
+
+namespace DevOps.Factories {
     public class TestAction : IActionComponent {
         public string TestFramework { get; set; }
         public bool FinishedTests = false;
@@ -14,12 +16,12 @@
         }
 
         virtual public bool PublishTestResults() {
-           if(!FinishedTests) {
+            if (!FinishedTests) {
                 Console.WriteLine($"Results cannot be published");
                 return false;
             } else {
                 Console.WriteLine($"{TestFramework}: Publishing Test Results");
-                return true; 
+                return true;
             }
         }
     }

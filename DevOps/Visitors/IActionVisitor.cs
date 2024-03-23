@@ -1,4 +1,6 @@
-﻿namespace DevOps.Factories {
+﻿using DevOps.Factories;
+
+namespace DevOps.Visitors {
     public interface IActionVisitor {
         bool Visit(AnalyseAction analyseAction);
         bool Visit(DeployAction deployAction);

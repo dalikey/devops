@@ -1,4 +1,6 @@
-﻿namespace DevOps.Factories {
+﻿using DevOps.Visitors;
+
+namespace DevOps.Factories {
     public class BuildAction : IActionComponent {
         public string BuildType { get; set; }
 

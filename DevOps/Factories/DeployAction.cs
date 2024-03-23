@@ -1,4 +1,6 @@
-﻿namespace DevOps.Factories {
+﻿using DevOps.Visitors;
+
+namespace DevOps.Factories {
     public class DeployAction : IActionComponent {
         public string DeploymentTarget { get; set; }
 
