@@ -3,7 +3,6 @@ using DevOps.Strategies.Behaviours;
 
 namespace DevOps.Domain.Roles {
     public class ProductOwner : Person {
-
         public IRoleStrategy roleStrategy;
 
         public ProductOwner() {
@@ -14,5 +13,5 @@ namespace DevOps.Domain.Roles {
             roleStrategy.PerformRole();
         }
     }
-    }
+}
 
