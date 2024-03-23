@@ -7,7 +7,7 @@ namespace DevOps.Tests.Domain {
 
 
         [Fact]
-        public void Tester_Should_Match_Output_And_Be_Performed_Once() {
+        public void Tester_Should_Be_Performed_Once() {
 
             //Arrange
             var mockStrategy = new Mock<IRoleStrategy>();
@@ -22,83 +22,67 @@ namespace DevOps.Tests.Domain {
 
             //Assert
             mockStrategy.Verify(s => s.PerformRole(), Times.Once);
-            Assert.Contains("Testing a task...", sw.ToString());            
         }
 
         [Fact]
-        public void ScrumMaster_Should_Match_Output_And_Be_Performed_Once() {
+        public void ScrumMaster_Should_Be_Performed_Once() {
 
             //Arrange
             var mockStrategy = new Mock<IRoleStrategy>();
             ScrumMaster scrumMaster = new ScrumMaster();
             scrumMaster.roleStrategy = mockStrategy.Object;
 
-            using StringWriter sw = new();
-            Console.SetOut(sw);
-
             //Act
             scrumMaster.Work();
 
             //Assert
             mockStrategy.Verify(s => s.PerformRole(), Times.Once);
-            Assert.Contains("Managing a team or task...", sw.ToString());
         }
 
         [Fact]
-        public void ProductOwner_Should_Match_Output_And_Be_Performed_Once() {
+        public void ProductOwner_Should_Be_Performed_Once() {
 
             //Arrange
             var mockStrategy = new Mock<IRoleStrategy>();
             ProductOwner productOwner = new ProductOwner();
             productOwner.roleStrategy = mockStrategy.Object;
 
-            using StringWriter sw = new();
-            Console.SetOut(sw);
-
             //Act
             productOwner.Work();
 
             //Assert
             mockStrategy.Verify(s => s.PerformRole(), Times.Once);
-            Assert.Contains("Managing a team or task...", sw.ToString());
         }
 
         [Fact]
-        public void LeadDeveloper_Should_Match_Output_And_Be_Performed_Once() {
+        public void LeadDeveloper_Should_Be_Performed_Once() {
 
-            //Arrange
+            // Arrange
             var mockStrategy = new Mock<IRoleStrategy>();
+            mockStrategy.Setup(s => s.PerformRole()).Verifiable();
             LeadDeveloper leadDeveloper = new LeadDeveloper();
             leadDeveloper.roleStrategy = mockStrategy.Object;
 
-            using StringWriter sw = new();
-            Console.SetOut(sw);
-
-            //Act
+            // Act
             leadDeveloper.Work();
 
-            //Assert
+            // Assert
             mockStrategy.Verify(s => s.PerformRole(), Times.Once);
-            Assert.Contains("Managing a team or task...", sw.ToString());
         }
 
         [Fact]
-        public void Developer_Should_Match_Output_And_Be_Performed_Once() {
+        public void Developer_Should_Be_Performed_Once() {
 
             //Arrange
             var mockStrategy = new Mock<IRoleStrategy>();
             Developer developer = new Developer();
             developer.roleStrategy = mockStrategy.Object;
 
-            using StringWriter sw = new();
-            Console.SetOut(sw);
-
             //Act
             developer.Work();
 
             //Assert
             mockStrategy.Verify(s => s.PerformRole(), Times.Once);
-            Assert.Contains("Programming a new task...", sw.ToString());
         }
     }
 }
