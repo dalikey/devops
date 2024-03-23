@@ -13,6 +13,5 @@ namespace DevOps.Domain.Roles {
         public void Work() {
             roleStrategy.PerformRole();
         }
-
     }
 }

@@ -10,6 +10,12 @@ namespace DevOps.States.BacklogState {
         }
 
         public int FinishTask() {
+            if (_backlogItem.Activities.All(a => a.IsFinished)) {
+                _backlogItem.UpdateState(new ReadyForTestingState(_backlogItem));
+                return _backlogItem.NotifyTesters();
+            }
+
+            Console.WriteLine("All activities are not finished!");
             return 0;
         }
 
