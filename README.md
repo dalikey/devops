@@ -26,8 +26,8 @@ This project aims to develop a domain for a Scrum/DevOps project management syst
   4. Adapter pattern
   5. Decorator pattern
 
-## Class Diagram:
-![Class Diagram - made by Junhao](img/package-diagram-junhao.png)
+## Package Diagram:
+![Package Diagram - made by Junhao](img/package-diagram-junhao.png)
 
 ## Code Implementation:
 The project is implemented in C#, with explicit indication of the design patterns used within the codebase.
