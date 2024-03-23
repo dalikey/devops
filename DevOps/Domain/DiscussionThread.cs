@@ -12,14 +12,10 @@ namespace DevOps.Domain {
         public List<DiscussionComment> Comments;
         public Func<string, Type, int> NotificationCallBack { get; set; }
 
-        public DiscussionThread(int id, string title, string description, BacklogItem relatedBackLogItem, List<Message> messages, Person person, List<DiscussionComment> comments) {
-            Id = id;
+        public DiscussionThread(string title, BacklogItem relatedBackLogItem, List<Message> messages) {
             Title = title;
-            Description = description;
             RelatedBacklogItem = relatedBackLogItem;
             Messages = messages;
-            Person = person;
-            Comments = comments;
         }
 
         public List<Message> getMessages() {
@@ -57,5 +53,6 @@ namespace DevOps.Domain {
 
             RelatedBacklogItem.DiscussionThreads.Add(this);
         }
+
     }
 }
