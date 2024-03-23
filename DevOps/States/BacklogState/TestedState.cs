@@ -14,6 +14,11 @@ namespace DevOps.States.BacklogState {
             Console.WriteLine("Cannot invalidate task because it's already tested.");
         }
 
+        public void MarkAsDone() {
+            _backlogItem.UpdateState(new DoneState(_backlogItem));
+            Console.WriteLine("Backlog item marked as 'Done'.");
+        }
+
         public void ReviewTestReport(bool passed) {
             if (!passed) {
                 Console.WriteLine("Test report indicates failure. Moving back to ready for testing state.");

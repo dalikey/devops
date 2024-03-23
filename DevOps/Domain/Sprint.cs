@@ -1,4 +1,5 @@
-﻿using DevOps.States.SprintState;
+﻿using DevOps.Domain.Roles;
+using DevOps.States.SprintState;
 
 namespace DevOps.Domain {
     public class Sprint {
@@ -10,6 +11,7 @@ namespace DevOps.Domain {
         public ISprintState _currentState { get; set; }
 
         public Sprint() {
+            BacklogItems = new List<BacklogItem>();
             _currentState = new SprintCreatedState();
         }
 
@@ -27,6 +29,19 @@ namespace DevOps.Domain {
 
         public void CancelRelease() {
             _currentState.CancelRelease(this);
+        }
+
+        public void AddBacklogItem(BacklogItem backlogItem) {
+            BacklogItems.Add(backlogItem);
+        }
+
+        public void AssignDeveloperToBacklogItem(int backlogItemId, Developer developer) {
+            var backlogItem = BacklogItems.Find(item => item.Id == backlogItemId);
+            if (backlogItem != null) {
+                backlogItem.Developer = developer;
+            } else {
+                throw new InvalidOperationException("Backlog item not found.");
+            }
         }
     }
 }

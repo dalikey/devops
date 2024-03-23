@@ -14,6 +14,10 @@ namespace DevOps.States.BacklogState {
             Console.WriteLine("Cannot invalidate task because it hasn't started yet.");
         }
 
+        public void MarkAsDone() {
+            _backlogItem.UpdateState(new TestingState(_backlogItem));
+        }
+
         public void ReviewTestReport(bool passed) {
             Console.WriteLine("Cannot review test report because the task hasn't started yet.");
         }
