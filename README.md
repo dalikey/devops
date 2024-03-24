@@ -25,6 +25,7 @@ This project aims to develop a domain for a Scrum/DevOps project management syst
   3. Observer pattern
   4. Adapter pattern
   5. Decorator pattern
+  6. Visitor pattern
 
 ## Package Diagram:
 ![Package Diagram - made by Junhao](img/package-diagram-junhao.png)
