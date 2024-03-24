@@ -16,7 +16,7 @@ namespace DevOps.Tests.Factories {
         }
 
         [Fact]
-        public void RunDeploymentTarget_Should_WriteToConsole() {
+        public void RunDependencyInstallation_Should_WriteToConsole() {
             // Arrange
             var deployAction = new DeployAction { DeploymentTarget = "Production" };
             var expectedOutput = $"{deployAction.DeploymentTarget}: Executing deployment tool";
@@ -25,7 +25,7 @@ namespace DevOps.Tests.Factories {
             Console.SetOut(sw);
 
             // Act
-            deployAction.RunDeploymentTarget();
+            deployAction.RunDependencyInstallation();
 
             // Assert
             Assert.Contains(expectedOutput, sw.ToString());
