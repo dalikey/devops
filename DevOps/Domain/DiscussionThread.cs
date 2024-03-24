@@ -44,12 +44,10 @@ namespace DevOps.Domain {
             NotifyAll(comment);
         }
 
-        //Niet covered
         public bool SprintStateIsFinished() {
             return (RelatedBacklogItem.BacklogState.GetType().Equals(typeof(DoneState)));
         }
 
-        //Niet covered
         public void InitializeThread() {
             if (!SprintStateIsFinished()) {
                 throw new InvalidOperationException("Not able to create a thread for the backlog item. Sprint has been finished already");
