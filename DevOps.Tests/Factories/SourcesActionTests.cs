@@ -34,6 +34,29 @@ namespace DevOps.Tests.Factories {
         }
 
         [Fact]
+        public void CreateAction_SourcesAction_ReturnsSourcesActionInstance() {
+            // Arrange
+            var actionType = "SourcesAction";
+            var sourcesAction = new SourcesAction();
+
+            // Act
+            var result = sourcesAction.CreateAction(actionType);
+
+            // Assert
+            Assert.IsType<SourcesAction>(result);
+        }
+
+        [Fact]
+        public void CreateAction_InvalidActionType_ThrowsArgumentException() {
+            // Arrange
+            var actionType = "InvalidActionType";
+            var sourcesAction = new SourcesAction();
+
+            // Act and Assert
+            Assert.Throws<ArgumentException>(() => sourcesAction.CreateAction(actionType));
+        }
+
+        [Fact]
         public void Execute_Should_Run_Clone_Repository() {
             //Arrange
             var sourcesAction = new SourcesAction();

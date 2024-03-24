@@ -1,4 +1,5 @@
 ﻿using DevOps.Factories;
+using DevOps.Visitors;
 using Moq;
 
 namespace DevOps.Tests.Factories {
@@ -30,6 +31,31 @@ namespace DevOps.Tests.Factories {
 
             // Assert
             Assert.Contains(expectedOutput, sw.ToString());
+        }
+
+        [Fact]
+        public void CreateAction_Deploy_ReturnsDeployActionWithDefaultDeploymentTarget() {
+            // Arrange
+            var actionType = "Deploy";
+            var expectedDeploymentTarget = "DefaultDeploymentTarget";
+            var deployAction = new DeployAction();
+
+            // Act
+            var result = deployAction.CreateAction(actionType);
+
+            // Assert
+            Assert.IsType<DeployAction>(result);
+            Assert.Equal(expectedDeploymentTarget, ((DeployAction)result).DeploymentTarget);
+        }
+
+        [Fact]
+        public void CreateAction_InvalidActionType_ThrowsArgumentException() {
+            // Arrange
+            var actionType = "InvalidActionType";
+            var deployAction = new DeployAction();
+
+            // Act and Assert
+            Assert.Throws<ArgumentException>(() => deployAction.CreateAction(actionType));
         }
 
         [Fact]

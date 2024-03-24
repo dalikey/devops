@@ -68,12 +68,35 @@ namespace DevOps.Tests.Factories {
         }
 
         [Fact]
+        public void CreateAction_TestAction_ReturnsTestActionInstance() {
+            // Arrange
+            var actionType = "TestAction";
+            var testAction = new TestAction();
+
+            // Act
+            var result = testAction.CreateAction(actionType);
+
+            // Assert
+            Assert.IsType<TestAction>(result);
+        }
+
+        [Fact]
+        public void CreateAction_InvalidActionType_ThrowsArgumentException() {
+            // Arrange
+            var actionType = "InvalidActionType";
+            var testAction = new TestAction();
+
+            // Act and Assert
+            Assert.Throws<ArgumentException>(() => testAction.CreateAction(actionType));
+        }
+
+        [Fact]
         public void Execute_Should_Run_Tests() {
             //Arrange
             var testAction = new TestAction();
             var mockTestAction = new Mock<TestAction> { CallBase = true };
             mockTestAction.Setup(m => m.RunTests()).Returns(true);
-            
+
 
             //Act
             mockTestAction.Object.Execute();

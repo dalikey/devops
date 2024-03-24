@@ -34,6 +34,29 @@ namespace DevOps.Tests.Factories {
         }
 
         [Fact]
+        public void CreateAction_PackageAction_ReturnsPackageActionInstance() {
+            // Arrange
+            var actionType = "PackageAction";
+            var packageAction = new PackageAction();
+
+            // Act
+            var result = packageAction.CreateAction(actionType);
+
+            // Assert
+            Assert.IsType<PackageAction>(result);
+        }
+
+        [Fact]
+        public void CreateAction_InvalidActionType_ThrowsArgumentException() {
+            // Arrange
+            var actionType = "InvalidActionType";
+            var packageAction = new PackageAction();
+
+            // Act and Assert
+            Assert.Throws<ArgumentException>(() => packageAction.CreateAction(actionType));
+        }
+
+        [Fact]
         public void Execute_Should_Run_Dependency_Installation() {
             //Arrange
             var deployAction = new PackageAction();
