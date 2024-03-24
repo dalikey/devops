@@ -2,8 +2,8 @@
 
 namespace DevOps.Factories {
     public class DeploymentPipeline : IActionComponent {
-        public bool AcceptVisitor(IActionVisitor visitor) {
-            return visitor.Visit(this);
+        public void AcceptVisitor(IActionVisitor visitor) {
+            visitor.Visit(this);
         }
 
         virtual public bool RunDeploymentPipe() {

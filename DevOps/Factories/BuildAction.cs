@@ -4,8 +4,8 @@ namespace DevOps.Factories {
     public class BuildAction : IActionComponent {
         public string BuildType { get; set; }
 
-        public bool AcceptVisitor(IActionVisitor visitor) {
-            return visitor.Visit(this);
+        public void AcceptVisitor(IActionVisitor visitor) {
+            visitor.Visit(this);
         }
 
         virtual public bool RunBuild() {

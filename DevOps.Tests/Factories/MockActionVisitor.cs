@@ -13,44 +13,36 @@ namespace DevOps.Tests.Factories {
         public bool VisitedTestAction { get; private set; }
         public bool VisitedUtilityAction { get; private set; }
 
-        public bool Visit(AnalyseAction analyseAction) {
+        public void Visit(AnalyseAction analyseAction) {
             VisitedAnalyseAction = true;
-            return true; // Simulate success
         }
 
-        public bool Visit(BuildAction buildAction) {
+        public void Visit(BuildAction buildAction) {
             VisitedBuildAction = true;
-            return true;
         }
 
-        public bool Visit(DeployAction deployAction) {
+        public void Visit(DeployAction deployAction) {
             VisitedDeployAction = true;
-            return true;
         }
 
-        public bool Visit(DeploymentPipeline deploymentPipeline) {
+        public void Visit(DeploymentPipeline deploymentPipeline) {
             VisitedDeploymentPipeline = true;
-            return true;
         }
 
-        public bool Visit(PackageAction packageAction) {
+        public void Visit(PackageAction packageAction) {
             VisitedPackageAction = true;
-            return true;
         }
 
-        public bool Visit(SourcesAction sourcesAction) {
+        public void Visit(SourcesAction sourcesAction) {
             VisitedSourcesAction = true;
-            return true;
         }
 
-        public bool Visit(TestAction testAction) {
+        public void Visit(TestAction testAction) {
             VisitedTestAction = true;
-            return true;
         }
 
-        public bool Visit(UtilityAction utilityAction) {
+        public void Visit(UtilityAction utilityAction) {
             VisitedUtilityAction = true;
-            return true;
         }
     }
 }

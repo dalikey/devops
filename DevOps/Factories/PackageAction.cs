@@ -4,8 +4,8 @@ namespace DevOps.Factories {
     public class PackageAction : IActionComponent {
         public List<String> Dependencies { get; set; } = new List<String>();
 
-        public bool AcceptVisitor(IActionVisitor visitor) {
-            return visitor.Visit(this);
+        public void AcceptVisitor(IActionVisitor visitor) {
+            visitor.Visit(this);
         }
 
         virtual public bool RunDeploymentTarget() {
