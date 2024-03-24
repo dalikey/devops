@@ -1,4 +1,5 @@
 ﻿using DevOps.Factories;
+using Moq;
 
 namespace DevOps.Tests.Factories {
     public class UtilityActionTests {
@@ -35,6 +36,43 @@ namespace DevOps.Tests.Factories {
             foreach (var expectedOutput in expectedOutputs) {
                 Assert.Contains(expectedOutput, sw.ToString());
             }
+        }
+
+        [Fact]
+        public void CreateAction_UtilityAction_ReturnsUtilityActionInstance() {
+            // Arrange
+            var actionType = "UtilityAction";
+            var utilityAction = new UtilityAction();
+
+            // Act
+            var result = utilityAction.CreateAction(actionType);
+
+            // Assert
+            Assert.IsType<UtilityAction>(result);
+        }
+
+        [Fact]
+        public void CreateAction_InvalidActionType_ThrowsArgumentException() {
+            // Arrange
+            var actionType = "InvalidActionType";
+            var utilityAction = new UtilityAction();
+
+            // Act and Assert
+            Assert.Throws<ArgumentException>(() => utilityAction.CreateAction(actionType));
+        }
+
+        [Fact]
+        public void Execute_Should_Run_Utility_Actions() {
+            //Arrange
+            var utilityAction = new UtilityAction();
+            var mockUtilityAction = new Mock<UtilityAction> { CallBase = true };
+            mockUtilityAction.Setup(m => m.RunUtilityActions()).Returns(true);
+
+            //Act
+            mockUtilityAction.Object.Execute();
+
+            //Assert
+            mockUtilityAction.Verify(m => m.RunUtilityActions(), Times.Once);
         }
     }
 }

@@ -83,7 +83,6 @@ namespace DevOps {
                 new SourcesAction { GitURL = "https://github.com/yourrepository.git" },
                 new TestAction { TestFramework = "NUnit" },
                 new UtilityAction { Actions = new List<string> { "Action1", "Action2" } },
-                new DeploymentPipeline()
             };
 
             // Create an instance of ActionVisitor
