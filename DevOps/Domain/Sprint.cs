@@ -2,8 +2,7 @@
 using DevOps.States.SprintState;
 
 namespace DevOps.Domain {
-    public class Sprint {
-        public int Id { get; set; }
+    public class Sprint { 
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

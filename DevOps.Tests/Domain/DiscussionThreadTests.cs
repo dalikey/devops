@@ -51,5 +51,40 @@ namespace DevOps.Tests.Domain {
             mockCallBack.Verify(x => x.Invoke("A Comment has been sent for a backlog item.", typeof(ProductOwner)), Times.Once);
             mockCallBack.Verify(x => x.Invoke("A Comment has been sent for a backlog item.", typeof(Tester)), Times.Once);
         }
+
+        [Fact]
+        public void SprintStateIsFinished_Should_Return_True() {
+
+            //Arrange
+            var backLogItem = new BacklogItem();
+            var backLogState = new DoneState(backLogItem);
+            var discussionThread = new DiscussionThread("Test tile", backLogItem, new List<Message>(), backLogState);
+
+            //Act
+            var result = discussionThread.SprintStateIsFinished(); 
+
+            //Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void InitializeThread_Should_Throw_Exception_When_Sprint_Is_Not_Finished() {
+            //Arrange
+            var backLogItem = new BacklogItem();
+            var backLogState = new TodoState(backLogItem);
+            var discussionThread = new DiscussionThread("Test tile", backLogItem, new List<Message>(), backLogState);
+
+            //Act & Assert
+            var exception = Assert.Throws<InvalidOperationException>(() => discussionThread.InitializeThread());
+            Assert.Equal("Not able to create a thread for the backlog item. Sprint has been finished already", exception.Message);
+           
+
+        }
+
+
     }
 }
+
+       
+    
+
