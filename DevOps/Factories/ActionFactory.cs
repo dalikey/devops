@@ -1,6 +1,8 @@
-﻿namespace DevOps.Factories {
+﻿using DevOps.Visitors;
+
+namespace DevOps.Factories {
     public class ActionFactory : IActionFactory {
-        public IActionVisitor CreateAction(string actionType) {
+        public IActionComponent CreateAction(string actionType) {
             switch (actionType) {
                 case "Sources":
                     return new SourcesAction();

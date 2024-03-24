@@ -7,19 +7,18 @@ namespace DevOps.Domain {
         public string Title { get; set; }
         public string Description { get; set; }
         public BacklogItem RelatedBacklogItem { get; set; }
+
+        public IBacklogState BacklogState { get; set; }
         public List<Message> Messages { get; set; }
         public Person Person { get; set; }
         public List<DiscussionComment> Comments;
         public Func<string, Type, int> NotificationCallBack { get; set; }
 
-        public DiscussionThread(int id, string title, string description, BacklogItem relatedBackLogItem, List<Message> messages, Person person, List<DiscussionComment> comments) {
-            Id = id;
+        public DiscussionThread(string title, BacklogItem relatedBackLogItem, List<Message> messages, IBacklogState backlogState) {
             Title = title;
-            Description = description;
             RelatedBacklogItem = relatedBackLogItem;
             Messages = messages;
-            Person = person;
-            Comments = comments;
+            Comments = new List<DiscussionComment>();
         }
 
         public List<Message> getMessages() {
@@ -57,5 +56,6 @@ namespace DevOps.Domain {
 
             RelatedBacklogItem.DiscussionThreads.Add(this);
         }
+
     }
 }

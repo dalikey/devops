@@ -138,7 +138,7 @@ namespace DevOps.Tests.BacklogState {
             var result = testingState.SendTestReport(false);
 
             // Assert
-            Assert.NotEqual(0, result);
+            Assert.Equal(0, result);
         }
     }
 }

@@ -15,6 +15,10 @@ namespace DevOps.States.BacklogState {
             _backlogItem.UpdateState(new TodoState(_backlogItem));
         }
 
+        public void MarkAsDone() {
+            Console.WriteLine("Backlog item is already marked as done.");
+        }
+
         public void ReviewTestReport(bool passed) {
             Console.WriteLine("Cannot review test report because the task is already completed.");
         }

@@ -1,6 +1,8 @@
-﻿namespace DevOps.Factories {
+﻿using DevOps.Visitors;
+
+namespace DevOps.Factories {
     public interface IActionFactory {
-        IActionVisitor CreateAction(string actionType);
+        IActionComponent CreateAction(string actionType);
         void Execute();
     }
 }

@@ -1,11 +1,12 @@
 using DevOps.Factories;
+using DevOps.Visitors;
 
 namespace DevOps.Domain {
     public class Pipeline {
-         private List<IActionVisitor> actions;
+        private List<IActionComponent> actions;
 
         public Pipeline(List<string> actionTypes) {
-            actions = new List<IActionVisitor>();
+            actions = new List<IActionComponent>();
             var actionFactory = new ActionFactory();
             foreach (var type in actionTypes) {
                 actions.Add(actionFactory.CreateAction(type));

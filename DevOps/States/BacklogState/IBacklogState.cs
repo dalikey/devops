@@ -8,5 +8,6 @@ namespace DevOps.States.BacklogState {
         public void StopTesting();
         public void ReviewTestReport(bool passed);
         public int SendTestReport(bool passed);
+        public void MarkAsDone();
     }
 }
