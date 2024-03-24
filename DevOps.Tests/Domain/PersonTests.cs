@@ -10,7 +10,7 @@ namespace DevOps.Tests.Domain {
         }
 
         public override void SendNotification(string message) {
-            // No need to implement for testing purposes
+            mediaAdapter.SendNotification(message);
         }
     }
 
