@@ -2,13 +2,13 @@
 
 namespace DevOps.Visitors {
     public interface IActionVisitor {
-        bool Visit(AnalyseAction analyseAction);
-        bool Visit(DeployAction deployAction);
-        bool Visit(PackageAction packageAction);
-        bool Visit(BuildAction buildAction);
-        bool Visit(SourcesAction sourcesAction);
-        bool Visit(TestAction testAction);
-        bool Visit(UtilityAction utilityAction);
-        bool Visit(DeploymentPipeline deploymentPipeline);
+        void Visit(AnalyseAction analyseAction);
+        void Visit(DeployAction deployAction);
+        void Visit(PackageAction packageAction);
+        void Visit(BuildAction buildAction);
+        void Visit(SourcesAction sourcesAction);
+        void Visit(TestAction testAction);
+        void Visit(UtilityAction utilityAction);
+        void Visit(DeploymentPipeline deploymentPipeline);
     }
 }

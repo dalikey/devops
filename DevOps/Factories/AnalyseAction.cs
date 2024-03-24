@@ -5,8 +5,8 @@ namespace DevOps.Factories {
 
         public string AnalyseTool { get; set; }
 
-        public bool AcceptVisitor(IActionVisitor visitor) {
-            return visitor.Visit(this);
+        public void AcceptVisitor(IActionVisitor visitor) {
+            visitor.Visit(this);
         }
 
         virtual public bool RunAnalysis() {
