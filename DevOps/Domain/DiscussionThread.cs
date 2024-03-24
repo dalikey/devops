@@ -19,6 +19,7 @@ namespace DevOps.Domain {
             RelatedBacklogItem = relatedBackLogItem;
             Messages = messages;
             Comments = new List<DiscussionComment>();
+            RelatedBacklogItem.DiscussionThreads = new List<DiscussionThread>();
         }
 
         public List<Message> getMessages() {
@@ -56,6 +57,5 @@ namespace DevOps.Domain {
 
             RelatedBacklogItem.DiscussionThreads.Add(this);
         }
-
     }
 }
