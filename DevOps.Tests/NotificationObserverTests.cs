@@ -1,3 +1,5 @@
+using DevOps.Observers;
+
 namespace DevOps.Tests {
     public class NotificationObserverTests {
         [Fact]

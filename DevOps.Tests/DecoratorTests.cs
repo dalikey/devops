@@ -6,7 +6,11 @@ namespace DevOps.Tests {
         [Fact]
         public void BasicReport_GenerateReport_Should_WriteToConsole() {
             // Arrange
-            var sprints = new List<(string, TeamComposition, BurndownChart, List<DeveloperEffortPoints>)>();
+            var sprints = new List<(string, TeamComposition, BurndownChart, List<DeveloperEffortPoints>)> {
+                ("Sprint 1", new TeamComposition { TeamName = "Team A", Developers = new List<string> { "Developer 1", "Developer 2" } },
+                new BurndownChart { SprintStartDate = DateTime.Now, SprintEndDate = DateTime.Now.AddDays(14), RemainingEffort = new List<int> { 10, 8, 6, 4, 2 } },
+                new List<DeveloperEffortPoints> { new DeveloperEffortPoints { DeveloperName = "Developer 1", EffortPoints = 20 }, new DeveloperEffortPoints { DeveloperName = "Developer 2", EffortPoints = 15 } })
+            };
             var basicReport = new BasicReport(sprints);
 
             using StringWriter sw = new StringWriter();
@@ -17,6 +21,13 @@ namespace DevOps.Tests {
 
             // Assert
             Assert.Contains("Generating basic report...", sw.ToString());
+            Assert.Contains("Sprint: Sprint 1", sw.ToString());
+            Assert.Contains("Sprint Team: Team A", sw.ToString());
+            Assert.Contains("Burndown Chart:", sw.ToString());
+            Assert.Contains("Sprint Start Date:", sw.ToString());
+            Assert.Contains("Sprint End Date:", sw.ToString());
+            Assert.Contains("Remaining Effort:", sw.ToString());
+            Assert.Contains("Effort Points per Developer:", sw.ToString());
         }
 
         [Fact]
