@@ -21,7 +21,7 @@ namespace DevOps.Tests.Factories {
         }
 
         [Fact]
-        public void RunDeploymentTarget_Should_WriteToConsole() {
+        public void RunDependencyInstallation_Should_WriteToConsole() {
             // Arrange
             var dependencies = new List<string> { "Dependency1", "Dependency2" };
             var packageAction = new PackageAction { Dependencies = dependencies };
@@ -31,7 +31,7 @@ namespace DevOps.Tests.Factories {
             Console.SetOut(sw);
 
             // Act
-            packageAction.RunDeploymentTarget();
+            packageAction.RunDependencyInstallation();
 
             // Assert
             Assert.Contains(expectedOutput, sw.ToString());

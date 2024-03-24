@@ -82,7 +82,7 @@ namespace DevOps.Tests.Factories
 
 
         [Fact]
-        public void RunDeploymentTarget_Should_Write_To_Console()
+        public void RunDependencyInstallation_Should_Write_To_Console()
         {
             // Arrange
             var deployAction = new DeployAction { DeploymentTarget = "Azure" };
@@ -91,7 +91,7 @@ namespace DevOps.Tests.Factories
             Console.SetOut(sw);
 
             // Act
-            var result = deployAction.RunDeploymentTarget();
+            var result = deployAction.RunDependencyInstallation();
 
             // Assert
             Assert.True(result);
@@ -100,7 +100,7 @@ namespace DevOps.Tests.Factories
 
 
         [Fact]
-        public void CloningRepository_Should_Write_To_Console()
+        public void CloneRepository_Should_Write_To_Console()
         {
             // Arrange
             var sourcesAction = new SourcesAction { GitURL = "https://github.com/repository" };
@@ -109,7 +109,7 @@ namespace DevOps.Tests.Factories
             Console.SetOut(sw);
 
             // Act
-            var result = sourcesAction.CloningRepository();
+            var result = sourcesAction.CloneRepository();
 
             // Assert
             Assert.True(result);
