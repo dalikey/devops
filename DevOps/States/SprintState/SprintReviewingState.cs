@@ -25,7 +25,7 @@ namespace DevOps.States.SprintState {
 
         public void CancelRelease(Sprint sprint) {
             Console.WriteLine("Cancelling sprint release.");
-            sprint.SetState(new SprintCreatedState());
+            sprint.SetState(new SprintCreationState());
         }
     }
 }
