@@ -1,99 +1,107 @@
-﻿using DevOps.Domain;
+﻿using Xunit;
+using DevOps.Domain;
 using DevOps.States.BacklogState;
+using System.IO;
 
 namespace DevOps.Tests.BacklogState {
-    public class DoingStateTests {
+    public class BacklogItemTests {
         [Fact]
-        public void StartTask_Should_WriteToConsole() {
+        public void StartTask_WhenInDoingState_Should_WriteToConsole() {
             // Arrange
             var backlogItem = new BacklogItem();
             var doingState = new DoingState(backlogItem);
+            backlogItem.UpdateState(doingState);
 
             using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
-            doingState.StartTask();
+            backlogItem.StartTask();
 
             // Assert
             Assert.Contains("Task is already in progress.", sw.ToString());
         }
 
         [Fact]
-        public void StopTask_Should_WriteToConsole() {
+        public void StopTask_WhenInDoingState_Should_WriteToConsole() {
             // Arrange
             var backlogItem = new BacklogItem();
             var doingState = new DoingState(backlogItem);
+            backlogItem.UpdateState(doingState);
 
             using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
-            doingState.StopTask();
+            backlogItem.StopTask();
 
             // Assert
             Assert.Contains("Task has been stopped.", sw.ToString());
         }
 
         [Fact]
-        public void InvalidateTask_Should_WriteToConsole() {
+        public void InvalidateTask_WhenInDoingState_Should_WriteToConsole() {
             // Arrange
             var backlogItem = new BacklogItem();
             var doingState = new DoingState(backlogItem);
+            backlogItem.UpdateState(doingState);
 
             using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
-            doingState.InvalidateTask();
+            backlogItem.InvalidateTask();
 
             // Assert
             Assert.Contains("Task cannot be invalidated while it's in progress.", sw.ToString());
         }
 
         [Fact]
-        public void StartTesting_Should_WriteToConsole() {
+        public void StartTesting_WhenInDoingState_Should_WriteToConsole() {
             // Arrange
             var backlogItem = new BacklogItem();
             var doingState = new DoingState(backlogItem);
+            backlogItem.UpdateState(doingState);
 
             using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
-            doingState.StartTesting();
+            backlogItem.StartTesting();
 
             // Assert
             Assert.Contains("Testing cannot be started until the task is completed.", sw.ToString());
         }
 
         [Fact]
-        public void StopTesting_Should_WriteToConsole() {
+        public void StopTesting_WhenInDoingState_Should_WriteToConsole() {
             // Arrange
             var backlogItem = new BacklogItem();
             var doingState = new DoingState(backlogItem);
+            backlogItem.UpdateState(doingState);
 
             using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
-            doingState.StopTesting();
+            backlogItem.StopTesting();
 
             // Assert
             Assert.Contains("Testing cannot be stopped until the task is completed.", sw.ToString());
         }
 
         [Fact]
-        public void ReviewTestReport_Should_WriteToConsole() {
+        public void ReviewTestReport_WhenInDoingState_Should_WriteToConsole() {
             // Arrange
             var backlogItem = new BacklogItem();
             var doingState = new DoingState(backlogItem);
+            backlogItem.UpdateState(doingState);
 
             using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
-            doingState.ReviewTestReport(true);
+            backlogItem.ReviewTestReport(true);
 
             // Assert
             Assert.Contains("Cannot review test report until the task is completed.", sw.ToString());
