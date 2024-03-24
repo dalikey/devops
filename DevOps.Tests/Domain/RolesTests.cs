@@ -72,5 +72,35 @@ namespace DevOps.Tests.Domain.Roles {
             // Assert
             mockStrategy.Verify(s => s.PerformRole(), Times.Once);
         }
+
+        [Fact]
+        public void Use_Should_WriteToConsole() {
+            // Arrange
+            var user = new User();
+
+            using StringWriter sw = new StringWriter();
+            Console.SetOut(sw);
+
+            // Act
+            user.Use();
+
+            // Assert
+            Assert.Equal("Using...\r\n", sw.ToString());
+        }
+
+        [Fact]
+        public void SendNotification_Should_InvokeSendNotificationOnMediaAdapter() {
+            // Arrange
+            var user = new User();
+            var mockAdapter = new Mock<IMediaAdapter>();
+            user.SetMediaAdapter(mockAdapter.Object);
+            string message = "Test message";
+
+            // Act
+            user.SendNotification(message);
+
+            // Assert
+            mockAdapter.Verify(a => a.SendNotification(message), Times.Once);
+        }
     }
 }
