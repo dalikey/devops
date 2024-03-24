@@ -35,7 +35,7 @@ namespace DevOps.Tests.Factories
             // Arrange
             var factory = new ActionFactory();
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -51,7 +51,7 @@ namespace DevOps.Tests.Factories
             // Arrange
             var analyseAction = new AnalyseAction { AnalyseTool = "StyleCop" };
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -69,7 +69,7 @@ namespace DevOps.Tests.Factories
             // Arrange
             var buildAction = new BuildAction { BuildType = "MSBuild" };
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -87,7 +87,7 @@ namespace DevOps.Tests.Factories
             // Arrange
             var deployAction = new DeployAction { DeploymentTarget = "Azure" };
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -105,7 +105,7 @@ namespace DevOps.Tests.Factories
             // Arrange
             var sourcesAction = new SourcesAction { GitURL = "https://github.com/repository" };
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -123,7 +123,7 @@ namespace DevOps.Tests.Factories
             // Arrange
             var testAction = new TestAction { TestFramework = "NUnit" };
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -140,7 +140,7 @@ namespace DevOps.Tests.Factories
             // Arrange
             var testAction = new TestAction { FinishedTests = true, TestFramework = "NUnit" };
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -157,7 +157,7 @@ namespace DevOps.Tests.Factories
             // Arrange
             var utilityAction = new UtilityAction { Actions = new List<string> { "Clean", "Prepare" } };
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act

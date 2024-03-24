@@ -7,7 +7,7 @@ namespace DevOps.Tests {
             var message = "Test message";
             var expectedOutput = "Slack Notification: " + message;
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -24,7 +24,7 @@ namespace DevOps.Tests {
             var message = "Test message";
             var expectedOutput = "Email Notification: " + message;
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act

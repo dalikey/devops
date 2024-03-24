@@ -10,7 +10,7 @@ namespace DevOps.Tests {
             //Arrange
             IRoleStrategy codingBehaviour = new Coding();
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             //Act
@@ -27,7 +27,7 @@ namespace DevOps.Tests {
             //Arrange
             IRoleStrategy managingBehaviour = new Managing();
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             //Act
@@ -44,7 +44,7 @@ namespace DevOps.Tests {
             //Arrange
             IRoleStrategy planningBehaviour = new Planning();
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             //Act
@@ -62,7 +62,7 @@ namespace DevOps.Tests {
             //Arrange
             IRoleStrategy testingBehaviour = new Testing();
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             //Act
