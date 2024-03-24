@@ -9,7 +9,7 @@ namespace DevOps.Tests.BacklogState {
             var backlogItem = new BacklogItem();
             var doneState = new DoneState(backlogItem);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -25,7 +25,7 @@ namespace DevOps.Tests.BacklogState {
             var backlogItem = new BacklogItem();
             var doneState = new DoneState(backlogItem);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -41,7 +41,7 @@ namespace DevOps.Tests.BacklogState {
             var backlogItem = new BacklogItem();
             var doneState = new DoneState(backlogItem);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -58,7 +58,7 @@ namespace DevOps.Tests.BacklogState {
             var backlogItem = new BacklogItem();
             var doneState = new DoneState(backlogItem);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -74,7 +74,7 @@ namespace DevOps.Tests.BacklogState {
             var backlogItem = new BacklogItem();
             var doneState = new DoneState(backlogItem);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -90,7 +90,7 @@ namespace DevOps.Tests.BacklogState {
             var backlogItem = new BacklogItem();
             var doneState = new DoneState(backlogItem);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act

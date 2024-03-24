@@ -9,7 +9,7 @@ namespace DevOps.Tests {
             var message = "Test message";
             var expectedOutput = $"Sending email notification: {message}";
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -26,7 +26,7 @@ namespace DevOps.Tests {
             var message = "Test message";
             var expectedOutput = $"Sending Slack notification: {message}";
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -43,7 +43,7 @@ namespace DevOps.Tests {
             var message = "Test message";
             var expectedOutput = $"Sending SMS notification: {message}";
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act

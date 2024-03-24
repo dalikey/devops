@@ -9,7 +9,7 @@ namespace DevOps.Tests.BacklogState {
             var backlogItem = new BacklogItem();
             var testingState = new TestingState(backlogItem);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -25,7 +25,7 @@ namespace DevOps.Tests.BacklogState {
             var backlogItem = new BacklogItem();
             var testingState = new TestingState(backlogItem);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -41,7 +41,7 @@ namespace DevOps.Tests.BacklogState {
             var backlogItem = new BacklogItem();
             var testingState = new TestingState(backlogItem);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -57,7 +57,7 @@ namespace DevOps.Tests.BacklogState {
             var backlogItem = new BacklogItem();
             var testingState = new TestingState(backlogItem);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -73,7 +73,7 @@ namespace DevOps.Tests.BacklogState {
             var backlogItem = new BacklogItem();
             var testingState = new TestingState(backlogItem);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -89,7 +89,7 @@ namespace DevOps.Tests.BacklogState {
             var backlogItem = new BacklogItem();
             var testingState = new TestingState(backlogItem);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -105,7 +105,7 @@ namespace DevOps.Tests.BacklogState {
             var backlogItem = new BacklogItem();
             var testingState = new TestingState(backlogItem);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act

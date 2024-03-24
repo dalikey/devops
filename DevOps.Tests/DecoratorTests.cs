@@ -9,7 +9,7 @@ namespace DevOps.Tests {
             var sprints = new List<(string, TeamComposition, BurndownChart, List<DeveloperEffortPoints>)>();
             var basicReport = new BasicReport(sprints);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -25,7 +25,7 @@ namespace DevOps.Tests {
             var innerReport = new BasicReport(new List<(string, TeamComposition, BurndownChart, List<DeveloperEffortPoints>)>());
             var headerDecorator = new HeaderDecorator(innerReport, "Company", "Project", "1.0", DateTime.Now);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -44,7 +44,7 @@ namespace DevOps.Tests {
             var innerReport = new BasicReport(new List<(string, TeamComposition, BurndownChart, List<DeveloperEffortPoints>)>());
             var footerDecorator = new FooterDecorator(innerReport, "Company", "Project", "1.0", DateTime.Now);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -60,7 +60,7 @@ namespace DevOps.Tests {
             var innerReport = new BasicReport(new List<(string, TeamComposition, BurndownChart, List<DeveloperEffortPoints>)>());
             var formatDecorator = new FormatDecorator(innerReport, "PDF");
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
@@ -81,7 +81,7 @@ namespace DevOps.Tests {
             var innerReport = new BasicReport(new List<(string, TeamComposition, BurndownChart, List<DeveloperEffortPoints>)>());
             var sprintDecorator = new SprintDecorator(innerReport, "Sprint 1", teamComposition, burndownChart, effortPointsPerDeveloper);
 
-            using StringWriter sw = new();
+            using StringWriter sw = new StringWriter();
             Console.SetOut(sw);
 
             // Act
