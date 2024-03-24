@@ -31,9 +31,5 @@ namespace DevOps.Visitors {
                 Console.WriteLine($"{action}: Running utility action");
             }
         }
-
-        public void Visit(DeploymentPipeline deploymentPipeline) {
-            Console.WriteLine("Executing deployment pipeline");
-        }
     }
 }

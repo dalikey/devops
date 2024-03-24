@@ -1,4 +1,5 @@
 ﻿using DevOps.Factories;
+using Moq;
 
 namespace DevOps.Tests.Factories {
     public class SourcesActionTests {
@@ -30,6 +31,20 @@ namespace DevOps.Tests.Factories {
 
             // Assert
             Assert.Contains(expectedOutput, sw.ToString());
+        }
+
+        [Fact]
+        public void Execute_Should_Run_Clone_Repository() {
+            //Arrange
+            var sourcesAction = new SourcesAction();
+            var mockSourcesAction = new Mock<SourcesAction> { CallBase = true };
+            mockSourcesAction.Setup(m => m.CloneRepository()).Returns(true);
+
+            //Act
+            mockSourcesAction.Object.Execute();
+
+            //Assert
+            mockSourcesAction.Verify(m => m.CloneRepository(), Times.Once);
         }
     }
 }

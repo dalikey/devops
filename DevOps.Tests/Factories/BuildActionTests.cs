@@ -1,4 +1,5 @@
 ﻿using DevOps.Factories;
+using Moq;
 
 namespace DevOps.Tests.Factories {
     public class BuildActionTests {
@@ -29,6 +30,21 @@ namespace DevOps.Tests.Factories {
 
             // Assert
             Assert.Contains(expectedOutput, sw.ToString());
+        }
+
+        [Fact]
+        public void Execute_Should_Run_Build() {
+
+            //Arrange
+            var buildAction = new BuildAction();
+            var mockBuildAction = new Mock<BuildAction> { CallBase = true };
+            mockBuildAction.Setup(m => m.RunBuild()).Returns(true);
+
+            //Act
+            mockBuildAction.Object.Execute();
+
+            //Assert
+            mockBuildAction.Verify(m => m.RunBuild(), Times.Once);
         }
     }
 }

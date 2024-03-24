@@ -25,10 +25,6 @@ namespace DevOps.Tests.Factories {
             VisitedDeployAction = true;
         }
 
-        public void Visit(DeploymentPipeline deploymentPipeline) {
-            VisitedDeploymentPipeline = true;
-        }
-
         public void Visit(PackageAction packageAction) {
             VisitedPackageAction = true;
         }

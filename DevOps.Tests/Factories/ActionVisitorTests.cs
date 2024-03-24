@@ -123,22 +123,5 @@ namespace DevOps.Tests.Factories {
             Assert.Contains(expectedOutput1, sw.ToString());
             Assert.Contains(expectedOutput2, sw.ToString());
         }
-
-        [Fact]
-        public void Visit_DeploymentPipeline_Should_WriteToConsole() {
-            // Arrange
-            var visitor = new ActionVisitor();
-            var deploymentPipeline = new DeploymentPipeline();
-            var expectedOutput = "Executing deployment pipeline";
-
-            using StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
-
-            // Act
-            visitor.Visit(deploymentPipeline);
-
-            // Assert
-            Assert.Contains(expectedOutput, sw.ToString());
-        }
     }
 }

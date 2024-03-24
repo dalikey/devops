@@ -1,9 +1,5 @@
 ﻿using DevOps.Factories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Moq;
 
 namespace DevOps.Tests.Factories {
     public class PackageActionTests {
@@ -35,6 +31,20 @@ namespace DevOps.Tests.Factories {
 
             // Assert
             Assert.Contains(expectedOutput, sw.ToString());
+        }
+
+        [Fact]
+        public void Execute_Should_Run_Dependency_Installation() {
+            //Arrange
+            var deployAction = new PackageAction();
+            var mockPackageAction = new Mock<PackageAction> { CallBase = true };
+            mockPackageAction.Setup(m => m.RunDependencyInstallation()).Returns(true);
+
+            //Act
+            mockPackageAction.Object.Execute();
+
+            //Assert
+            mockPackageAction.Verify(m => m.RunDependencyInstallation(), Times.Once);
         }
     }
 }

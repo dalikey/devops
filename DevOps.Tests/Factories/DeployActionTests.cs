@@ -1,4 +1,5 @@
 ﻿using DevOps.Factories;
+using Moq;
 
 namespace DevOps.Tests.Factories {
     public class DeployActionTests {
@@ -29,6 +30,20 @@ namespace DevOps.Tests.Factories {
 
             // Assert
             Assert.Contains(expectedOutput, sw.ToString());
+        }
+
+        [Fact]
+        public void Execute_Should_Run_Dependency_Installation() {
+            //Arrange
+            var deployAction = new DeployAction();
+            var mockDeployAction = new Mock<DeployAction> { CallBase = true };
+            mockDeployAction.Setup(m => m.RunDependencyInstallation()).Returns(true);
+
+            //Act
+            mockDeployAction.Object.Execute();
+
+            //Assert
+            mockDeployAction.Verify(m => m.RunDependencyInstallation(), Times.Once);
         }
     }
 }

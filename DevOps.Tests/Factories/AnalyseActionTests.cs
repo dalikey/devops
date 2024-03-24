@@ -1,4 +1,5 @@
 ﻿using DevOps.Factories;
+using Moq;
 
 namespace DevOps.Tests.Factories {
     public class AnalyseActionTests {
@@ -29,6 +30,21 @@ namespace DevOps.Tests.Factories {
 
             // Assert
             Assert.Contains(expectedOutput, sw.ToString());
+        }
+
+        [Fact]
+        public void Execute_Should_Run_Analysis() {
+
+            //Arrange
+            var analyseAction = new AnalyseAction();
+            var mockAnalyseAction = new Mock<AnalyseAction> { CallBase = true };
+            mockAnalyseAction.Setup(m => m.RunAnalysis()).Returns(true);
+
+            //Act
+            mockAnalyseAction.Object.Execute();
+
+            //Assert
+            mockAnalyseAction.Verify(m => m.RunAnalysis(), Times.Once);
         }
     }
 }

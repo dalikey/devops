@@ -9,6 +9,5 @@ namespace DevOps.Visitors {
         void Visit(SourcesAction sourcesAction);
         void Visit(TestAction testAction);
         void Visit(UtilityAction utilityAction);
-        void Visit(DeploymentPipeline deploymentPipeline);
     }
 }
