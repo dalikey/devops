@@ -2,7 +2,7 @@
 using DevOps.Strategies.Behaviours;
 
 namespace DevOps.Domain.Roles {
-    public class ScrumMaster : Person { 
+    public class ScrumMaster : Person {
         public IRoleStrategy roleStrategy;
         public ScrumMaster() {
             roleStrategy = new Managing();
@@ -10,6 +10,10 @@ namespace DevOps.Domain.Roles {
 
         public void Work() {
             roleStrategy.PerformRole();
+        }
+
+        public override void SendNotification(string message) {
+            mediaAdapter.SendNotification(message);
         }
     }
 }

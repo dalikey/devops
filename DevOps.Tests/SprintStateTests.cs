@@ -4,10 +4,10 @@ using DevOps.States.SprintState;
 namespace DevOps.Tests {
     public class SprintStateTests {
         [Fact]
-        public void SprintCreatedState_Review_Should_TransitionToSprintReviewingState() {
+        public void SprintCreationState_Review_Should_TransitionToSprintReviewingState() {
             // Arrange
             var sprint = new Sprint();
-            var sprintState = new SprintCreatedState();
+            var sprintState = new SprintCreationState();
 
             // Act
             sprintState.Review(sprint);
@@ -17,29 +17,29 @@ namespace DevOps.Tests {
         }
 
         [Fact]
-        public void SprintCreatedState_Release_Should_NotChangeState() {
+        public void SprintCreationState_Release_Should_NotChangeState() {
             // Arrange
             var sprint = new Sprint();
-            var sprintState = new SprintCreatedState();
+            var sprintState = new SprintCreationState();
 
             // Act
             sprintState.Release(sprint);
 
             // Assert
-            Assert.IsType<SprintCreatedState>(sprint._currentState);
+            Assert.IsType<SprintCreationState>(sprint._currentState);
         }
 
         [Fact]
-        public void SprintCreatedState_CancelRelease_Should_NotChangeState() {
+        public void SprintCreationState_CancelRelease_Should_NotChangeState() {
             // Arrange
             var sprint = new Sprint();
-            var sprintState = new SprintCreatedState();
+            var sprintState = new SprintCreationState();
 
             // Act
             sprintState.CancelRelease(sprint);
 
             // Assert
-            Assert.IsType<SprintCreatedState>(sprint._currentState);
+            Assert.IsType<SprintCreationState>(sprint._currentState);
         }
 
         [Fact]
@@ -71,7 +71,7 @@ namespace DevOps.Tests {
         }
 
         [Fact]
-        public void SprintReviewingState_CancelRelease_Should_TransitionToSprintCreatedState() {
+        public void SprintReviewingState_CancelRelease_Should_TransitionToSprintCreationState() {
             // Arrange
             var sprint = new Sprint();
             sprint.SetState(new SprintReviewingState());
@@ -81,7 +81,7 @@ namespace DevOps.Tests {
             sprintState.CancelRelease(sprint);
 
             // Assert
-            Assert.IsType<SprintCreatedState>(sprint._currentState);
+            Assert.IsType<SprintCreationState>(sprint._currentState);
         }
 
         [Fact]

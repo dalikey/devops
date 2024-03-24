@@ -12,5 +12,9 @@ namespace DevOps.Domain.Roles {
         public void Work() {
             roleStrategy.PerformRole();
         }
+
+        public override void SendNotification(string message) {
+            mediaAdapter.SendNotification(message);
+        }
     }
 }
