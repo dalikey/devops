@@ -43,15 +43,17 @@ namespace DevOps.Domain {
         public int NotifyScrumMaster() {
             if (NotificationCallBack != null) {
                 return NotificationCallBack("Item has been rejected. Item has been put back in ToDo", typeof(ScrumMaster));
+            } else {
+                return 0;
             }
-            return 0;
         }
 
         public int NotifyTesters() {
             if (NotificationCallBack != null) {
                 return NotificationCallBack("Item has been rejected. Item has been put back in ToDo", typeof(Tester));
+            } else {
+                return 0;
             }
-            return 0;
         }
 
         public void MarkAsDone() {
@@ -69,7 +71,6 @@ namespace DevOps.Domain {
             return true;
         }
 
-        //Coverage fixen
         public void StartTask() => BacklogState.StartTask();
         public void StopTask() => BacklogState.StopTask();
         public void InvalidateTask() => BacklogState.InvalidateTask();
