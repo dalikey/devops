@@ -3,14 +3,12 @@ using DevOps.States.BacklogState;
 
 namespace DevOps.Domain {
     public class DiscussionThread {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public string Title { get; set; } 
         public BacklogItem RelatedBacklogItem { get; set; }
 
         public IBacklogState BacklogState { get; set; }
         public List<Message> Messages { get; set; }
-        public Person Person { get; set; }
+
         public List<DiscussionComment> Comments;
         public Func<string, Type, int> NotificationCallBack { get; set; }
 
@@ -54,7 +52,6 @@ namespace DevOps.Domain {
             if (!SprintStateIsFinished()) {
                 throw new InvalidOperationException("Not able to create a thread for the backlog item. Sprint has been finished already");
             }
-
             RelatedBacklogItem.DiscussionThreads.Add(this);
         }
     }

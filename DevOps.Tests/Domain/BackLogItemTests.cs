@@ -89,5 +89,25 @@ namespace DevOps.Tests.Domain {
             // Act & Assert
             Assert.Throws<InvalidOperationException>(() => backlogItem.MarkAsDone());
         }
+
+        [Fact]
+
+        public void SplitBackLogItem_Should_Add_Activity() {
+            //Arrange
+            var backlogItem = new BacklogItem();
+            var developer = new Developer();
+            var taskDescription = "Task description";
+
+            //Act
+            backlogItem.SplitBacklogItem(taskDescription, developer);
+
+            //Assert
+            Assert.Single(backlogItem.Activities);
+            var activity = backlogItem.Activities[0];
+            Assert.Equal(taskDescription, activity.Task);
+            Assert.Equal(developer, activity.AssignedDeveloper);
+
+        }
+        
     }
 }

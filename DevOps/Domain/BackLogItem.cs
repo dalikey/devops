@@ -5,8 +5,6 @@ namespace DevOps.Domain {
     public class BacklogItem {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
-        public Sprint Sprint { get; set; }
         public List<DiscussionThread> DiscussionThreads { get; set; }
         public List<Activity> Activities { get; set; }
 
@@ -61,9 +59,8 @@ namespace DevOps.Domain {
         public void MarkAsDone() {
             if (AreAllTasksFinished()) {
                 BacklogState.MarkAsDone();
-            } else {
-                throw new InvalidOperationException("Cannot mark as 'done'. Not all tasks are finished.");
             }
+            throw new InvalidOperationException("Cannot mark as 'done'. Not all tasks are finished.");
         }
         private bool AreAllTasksFinished() {
             foreach (var activity in Activities) {
