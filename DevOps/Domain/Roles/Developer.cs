@@ -11,6 +11,11 @@ namespace DevOps.Domain.Roles {
 
         public void Work() {
             roleStrategy.PerformRole();
+            mediaAdapter.SendNotification("Developer is working...");
+        }
+
+        public override void SendNotification(string message) {
+            mediaAdapter.SendNotification(message);
         }
     }
 }
