@@ -12,7 +12,7 @@ namespace DevOps.Domain {
 
         public Sprint() {
             BacklogItems = new List<BacklogItem>();
-            _currentState = new SprintCreatedState();
+            _currentState = new SprintCreationState();
         }
 
         public void SetState(ISprintState state) {
