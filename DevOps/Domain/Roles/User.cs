@@ -3,5 +3,9 @@
         public void Use() {
             Console.WriteLine("Using...");
         }
+
+        public override void SendNotification(string message) {
+            mediaAdapter.SendNotification(message);
+        }
     }
 }
