@@ -7,10 +7,10 @@ namespace DevOps.Tests {
         public void BasicReport_GenerateReport_Should_WriteToConsole() {
             // Arrange
             var sprints = new List<(string, TeamComposition, BurndownChart, List<DeveloperEffortPoints>)> {
-                ("Sprint 1", new TeamComposition { TeamName = "Team A", Developers = new List<string> { "Developer 1", "Developer 2" } },
-                new BurndownChart { SprintStartDate = DateTime.Now, SprintEndDate = DateTime.Now.AddDays(14), RemainingEffort = new List<int> { 10, 8, 6, 4, 2 } },
-                new List<DeveloperEffortPoints> { new DeveloperEffortPoints { DeveloperName = "Developer 1", EffortPoints = 20 }, new DeveloperEffortPoints { DeveloperName = "Developer 2", EffortPoints = 15 } })
-            };
+        ("Sprint 1", new TeamComposition { TeamName = "Team A", Developers = new List<string> { "Developer 1", "Developer 2" } },
+        new BurndownChart { SprintStartDate = DateTime.Now, SprintEndDate = DateTime.Now.AddDays(14), RemainingEffort = new List<int> { 10, 8, 6, 4, 2 } },
+        new List<DeveloperEffortPoints> { new DeveloperEffortPoints { DeveloperName = "Developer 1", EffortPoints = 20 }, new DeveloperEffortPoints { DeveloperName = "Developer 2", EffortPoints = 15 } })
+        };
             var basicReport = new BasicReport(sprints);
 
             using StringWriter sw = new StringWriter();
@@ -20,14 +20,25 @@ namespace DevOps.Tests {
             basicReport.GenerateReport();
 
             // Assert
-            Assert.Contains("Generating basic report...", sw.ToString());
-            Assert.Contains("Sprint: Sprint 1", sw.ToString());
-            Assert.Contains("Sprint Team: Team A", sw.ToString());
-            Assert.Contains("Burndown Chart:", sw.ToString());
-            Assert.Contains("Sprint Start Date:", sw.ToString());
-            Assert.Contains("Sprint End Date:", sw.ToString());
-            Assert.Contains("Remaining Effort:", sw.ToString());
-            Assert.Contains("Effort Points per Developer:", sw.ToString());
+            var consoleOutput = sw.ToString();
+            Assert.Contains("Generating basic report...", consoleOutput);
+            Assert.Contains("Sprint: Sprint 1", consoleOutput);
+            Assert.Contains("Sprint Team: Team A", consoleOutput);
+            Assert.Contains("Team Composition:", consoleOutput);
+            Assert.Contains("- Developer 1", consoleOutput);
+            Assert.Contains("- Developer 2", consoleOutput);
+            Assert.Contains("Burndown Chart:", consoleOutput);
+            Assert.Contains("Sprint Start Date:", consoleOutput);
+            Assert.Contains("Sprint End Date:", consoleOutput);
+            Assert.Contains("Remaining Effort:", consoleOutput);
+            Assert.Contains("- 10", consoleOutput);
+            Assert.Contains("- 8", consoleOutput);
+            Assert.Contains("- 6", consoleOutput);
+            Assert.Contains("- 4", consoleOutput);
+            Assert.Contains("- 2", consoleOutput);
+            Assert.Contains("Effort Points per Developer:", consoleOutput);
+            Assert.Contains("- Developer 1: 20", consoleOutput);
+            Assert.Contains("- Developer 2: 15", consoleOutput);
         }
 
         [Fact]
@@ -99,18 +110,23 @@ namespace DevOps.Tests {
             sprintDecorator.GenerateReport();
 
             // Assert
-            Assert.Contains("Sprint: Sprint 1", sw.ToString());
-            Assert.Contains("Sprint Team: Team A", sw.ToString());
-            Assert.Contains("Burndown Chart:", sw.ToString());
-            Assert.Contains($"Sprint Start Date: {DateTime.Now}", sw.ToString());
-            Assert.Contains($"Sprint End Date: {DateTime.Now.AddDays(14)}", sw.ToString());
-            Assert.Contains("Remaining Effort:", sw.ToString());
-            foreach (var remainingEffortItem in remainingEffort) {
-                Assert.Contains($"- {remainingEffortItem}", sw.ToString());
+            var consoleOutput = sw.ToString();
+            Assert.Contains("Sprint: Sprint 1", consoleOutput);
+            Assert.Contains("Sprint Team: Team A", consoleOutput);
+            Assert.Contains("Team Composition:", consoleOutput);
+            foreach (var developer in developers) {
+                Assert.Contains($"- {developer}", consoleOutput);
             }
-            Assert.Contains("Effort Points per Developer:", sw.ToString());
+            Assert.Contains("Burndown Chart:", consoleOutput);
+            Assert.Contains($"Sprint Start Date: {DateTime.Now}", consoleOutput);
+            Assert.Contains($"Sprint End Date: {DateTime.Now.AddDays(14)}", consoleOutput);
+            Assert.Contains("Remaining Effort:", consoleOutput);
+            foreach (var remainingEffortItem in remainingEffort) {
+                Assert.Contains($"- {remainingEffortItem}", consoleOutput);
+            }
+            Assert.Contains("Effort Points per Developer:", consoleOutput);
             foreach (var effortPoints in effortPointsPerDeveloper) {
-                Assert.Contains($"- {effortPoints.DeveloperName}: {effortPoints.EffortPoints}", sw.ToString());
+                Assert.Contains($"- {effortPoints.DeveloperName}: {effortPoints.EffortPoints}", consoleOutput);
             }
         }
     }
