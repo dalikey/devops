@@ -5,8 +5,8 @@ namespace DevOps.Factories {
         public string TestFramework { get; set; }
         public bool FinishedTests = false;
 
-        public bool AcceptVisitor(IActionVisitor visitor) {
-            return visitor.Visit(this);
+        public void AcceptVisitor(IActionVisitor visitor) {
+             visitor.Visit(this);
         }
 
         virtual public bool RunTests() {

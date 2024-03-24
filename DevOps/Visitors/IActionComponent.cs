@@ -1,5 +1,5 @@
 ﻿namespace DevOps.Visitors {
     public interface IActionComponent {
-        public bool AcceptVisitor(IActionVisitor visitor);
+        public void AcceptVisitor(IActionVisitor visitor);
     }
 }

@@ -1,67 +1,31 @@
-﻿using DevOps.Domain.Roles;
+﻿using DevOps.Adapters;
+using DevOps.Domain.Roles;
 using DevOps.Strategies;
 using Moq;
 
-namespace DevOps.Tests.Domain {
+namespace DevOps.Tests.Domain.Roles {
     public class RolesTests {
-
-
         [Fact]
-        public void Tester_Should_Be_Performed_Once() {
-
-            //Arrange
-            var mockStrategy = new Mock<IRoleStrategy>();
-            Tester tester = new Tester();
-            tester.roleStrategy = mockStrategy.Object;
-
-            using StringWriter sw = new();
-            Console.SetOut(sw);
-
-            //Act
-            tester.Work();
-
-            //Assert
-            mockStrategy.Verify(s => s.PerformRole(), Times.Once);
-        }
-
-        [Fact]
-        public void ScrumMaster_Should_Be_Performed_Once() {
-
-            //Arrange
-            var mockStrategy = new Mock<IRoleStrategy>();
-            ScrumMaster scrumMaster = new ScrumMaster();
-            scrumMaster.roleStrategy = mockStrategy.Object;
-
-            //Act
-            scrumMaster.Work();
-
-            //Assert
-            mockStrategy.Verify(s => s.PerformRole(), Times.Once);
-        }
-
-        [Fact]
-        public void ProductOwner_Should_Be_Performed_Once() {
-
-            //Arrange
-            var mockStrategy = new Mock<IRoleStrategy>();
-            ProductOwner productOwner = new ProductOwner();
-            productOwner.roleStrategy = mockStrategy.Object;
-
-            //Act
-            productOwner.Work();
-
-            //Assert
-            mockStrategy.Verify(s => s.PerformRole(), Times.Once);
-        }
-
-        [Fact]
-        public void LeadDeveloper_Should_Be_Performed_Once() {
-
+        public void Developer_Work_Should_PerformRoleAndSendNotification() {
             // Arrange
             var mockStrategy = new Mock<IRoleStrategy>();
-            mockStrategy.Setup(s => s.PerformRole()).Verifiable();
-            LeadDeveloper leadDeveloper = new LeadDeveloper();
-            leadDeveloper.roleStrategy = mockStrategy.Object;
+            var developer = new Developer { roleStrategy = mockStrategy.Object };
+            var mockAdapter = new Mock<IMediaAdapter>();
+            developer.SetMediaAdapter(mockAdapter.Object);
+
+            // Act
+            developer.Work();
+
+            // Assert
+            mockStrategy.Verify(s => s.PerformRole(), Times.Once);
+            mockAdapter.Verify(a => a.SendNotification("Developer is working..."), Times.Once);
+        }
+
+        [Fact]
+        public void LeadDeveloper_Work_Should_PerformRole() {
+            // Arrange
+            var mockStrategy = new Mock<IRoleStrategy>();
+            var leadDeveloper = new LeadDeveloper { roleStrategy = mockStrategy.Object };
 
             // Act
             leadDeveloper.Work();
@@ -71,18 +35,72 @@ namespace DevOps.Tests.Domain {
         }
 
         [Fact]
-        public void Developer_Should_Be_Performed_Once() {
-
-            //Arrange
+        public void ProductOwner_Work_Should_PerformRole() {
+            // Arrange
             var mockStrategy = new Mock<IRoleStrategy>();
-            Developer developer = new Developer();
-            developer.roleStrategy = mockStrategy.Object;
+            var productOwner = new ProductOwner { roleStrategy = mockStrategy.Object };
 
-            //Act
-            developer.Work();
+            // Act
+            productOwner.Work();
 
-            //Assert
+            // Assert
             mockStrategy.Verify(s => s.PerformRole(), Times.Once);
+        }
+
+        [Fact]
+        public void ScrumMaster_Work_Should_PerformRole() {
+            // Arrange
+            var mockStrategy = new Mock<IRoleStrategy>();
+            var scrumMaster = new ScrumMaster { roleStrategy = mockStrategy.Object };
+
+            // Act
+            scrumMaster.Work();
+
+            // Assert
+            mockStrategy.Verify(s => s.PerformRole(), Times.Once);
+        }
+
+        [Fact]
+        public void Tester_Work_Should_PerformRole() {
+            // Arrange
+            var mockStrategy = new Mock<IRoleStrategy>();
+            var tester = new Tester { roleStrategy = mockStrategy.Object };
+
+            // Act
+            tester.Work();
+
+            // Assert
+            mockStrategy.Verify(s => s.PerformRole(), Times.Once);
+        }
+
+        [Fact]
+        public void Use_Should_WriteToConsole() {
+            // Arrange
+            var user = new User();
+
+            using StringWriter sw = new StringWriter();
+            Console.SetOut(sw);
+
+            // Act
+            user.Use();
+
+            // Assert
+            Assert.Equal("Using...\r\n", sw.ToString());
+        }
+
+        [Fact]
+        public void SendNotification_Should_InvokeSendNotificationOnMediaAdapter() {
+            // Arrange
+            var user = new User();
+            var mockAdapter = new Mock<IMediaAdapter>();
+            user.SetMediaAdapter(mockAdapter.Object);
+            string message = "Test message";
+
+            // Act
+            user.SendNotification(message);
+
+            // Assert
+            mockAdapter.Verify(a => a.SendNotification(message), Times.Once);
         }
     }
 }

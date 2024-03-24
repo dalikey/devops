@@ -54,5 +54,91 @@ namespace DevOps.Tests.Factories {
             Assert.Contains(expectedOutput, sw.ToString());
         }
 
+        [Fact]
+        public void Visit_BuildAction_Should_WriteToConsole() {
+            // Arrange
+            var visitor = new ActionVisitor();
+            var buildAction = new BuildAction { BuildType = "Release" };
+            var expectedOutput = $"{buildAction.BuildType}: Executing build";
+
+            using StringWriter sw = new StringWriter();
+            Console.SetOut(sw);
+
+            // Act
+            visitor.Visit(buildAction);
+
+            // Assert
+            Assert.Contains(expectedOutput, sw.ToString());
+        }
+
+        [Fact]
+        public void Visit_SourcesAction_Should_WriteToConsole() {
+            // Arrange
+            var visitor = new ActionVisitor();
+            var sourcesAction = new SourcesAction { GitURL = "https://github.com/repo" };
+            var expectedOutput = $"{sourcesAction.GitURL}: Cloning repository";
+
+            using StringWriter sw = new StringWriter();
+            Console.SetOut(sw);
+
+            // Act
+            visitor.Visit(sourcesAction);
+
+            // Assert
+            Assert.Contains(expectedOutput, sw.ToString());
+        }
+
+        [Fact]
+        public void Visit_TestAction_Should_WriteToConsole() {
+            // Arrange
+            var visitor = new ActionVisitor();
+            var testAction = new TestAction { TestFramework = "NUnit" };
+            var expectedOutput = $"{testAction.TestFramework}: Running test framework";
+
+            using StringWriter sw = new StringWriter();
+            Console.SetOut(sw);
+
+            // Act
+            visitor.Visit(testAction);
+
+            // Assert
+            Assert.Contains(expectedOutput, sw.ToString());
+        }
+
+        [Fact]
+        public void Visit_UtilityAction_Should_WriteToConsole() {
+            // Arrange
+            var visitor = new ActionVisitor();
+            var utilityAction = new UtilityAction { Actions = new List<string> { "Action1", "Action2" } };
+            var expectedOutput1 = "Action1: Running utility action";
+            var expectedOutput2 = "Action2: Running utility action";
+
+            using StringWriter sw = new StringWriter();
+            Console.SetOut(sw);
+
+            // Act
+            visitor.Visit(utilityAction);
+
+            // Assert
+            Assert.Contains(expectedOutput1, sw.ToString());
+            Assert.Contains(expectedOutput2, sw.ToString());
+        }
+
+        [Fact]
+        public void Visit_DeploymentPipeline_Should_WriteToConsole() {
+            // Arrange
+            var visitor = new ActionVisitor();
+            var deploymentPipeline = new DeploymentPipeline();
+            var expectedOutput = "Executing deployment pipeline";
+
+            using StringWriter sw = new StringWriter();
+            Console.SetOut(sw);
+
+            // Act
+            visitor.Visit(deploymentPipeline);
+
+            // Assert
+            Assert.Contains(expectedOutput, sw.ToString());
+        }
     }
 }

@@ -1,70 +1,101 @@
 ﻿using DevOps.Domain;
+using DevOps.Domain.Roles;
 using DevOps.States.SprintState;
 using Moq;
 
 namespace DevOps.Tests.Domain {
     public class SprintTests {
-
         [Fact]
-        public void SetState_Should_Change_State() {
-
-            //Arrange
+        public void SetState_Should_Set_CurrentState() {
+            // Arrange
             var sprint = new Sprint();
-            var newState = new Mock<ISprintState>().Object;
+            var newState = new SprintReviewingState();
 
-            //Act
+            // Act
             sprint.SetState(newState);
 
-            //Assert
+            // Assert
             Assert.Equal(newState, sprint._currentState);
         }
 
         [Fact]
-        public void Review_Should_Invoke_Review_Method_Of_Current_State() {
-
-            //Arrange
+        public void Review_Should_Call_Review_Method_In_CurrentState() {
+            // Arrange
             var sprint = new Sprint();
-            var currentState = new Mock<ISprintState>();
+            var mockState = new Mock<ISprintState>();
+            sprint.SetState(mockState.Object);
 
-            sprint.SetState(currentState.Object);
-
-            //Act
+            // Act
             sprint.Review();
 
-            //Assert
-            currentState.Verify(x => x.Review(sprint), Times.Once);
+            // Assert
+            mockState.Verify(state => state.Review(sprint), Times.Once);
         }
 
         [Fact]
-        public void Release_Should_Invoke_Release_Method_Of_Current_State() {
-
-            //Arrange
+        public void Release_Should_Call_Release_Method_In_CurrentState() {
+            // Arrange
             var sprint = new Sprint();
-            var currentState = new Mock<ISprintState>();
+            var mockState = new Mock<ISprintState>();
+            sprint.SetState(mockState.Object);
 
-            sprint.SetState(currentState.Object);
-
-            //Act
+            // Act
             sprint.Release();
 
-            //Assert
-            currentState.Verify(x => x.Release(sprint), Times.Once);
+            // Assert
+            mockState.Verify(state => state.Release(sprint), Times.Once);
         }
 
         [Fact]
-        public void CancelRelease_Should_Invoke_CancelRelease_Method_Of_Current_State() {
-
-            //Arrange
+        public void CancelRelease_Should_Call_CancelRelease_Method_In_CurrentState() {
+            // Arrange
             var sprint = new Sprint();
-            var currentState = new Mock<ISprintState>();
+            var mockState = new Mock<ISprintState>();
+            sprint.SetState(mockState.Object);
 
-            sprint.SetState(currentState.Object);
-
-            //Act
+            // Act
             sprint.CancelRelease();
 
-            //Assert
-            currentState.Verify(x => x.CancelRelease(sprint), Times.Once);
+            // Assert
+            mockState.Verify(state => state.CancelRelease(sprint), Times.Once);
+        }
+
+        [Fact]
+        public void AddBacklogItem_Should_Add_Item_To_BacklogItems_List() {
+            // Arrange
+            var sprint = new Sprint();
+            var backlogItem = new BacklogItem();
+
+            // Act
+            sprint.AddBacklogItem(backlogItem);
+
+            // Assert
+            Assert.Contains(backlogItem, sprint.BacklogItems);
+        }
+
+        [Fact]
+        public void AssignDeveloperToBacklogItem_Should_Assign_Developer_To_BacklogItem() {
+            // Arrange
+            var sprint = new Sprint();
+            var backlogItem = new BacklogItem { Id = 1 };
+            sprint.AddBacklogItem(backlogItem);
+            var developer = new Developer();
+
+            // Act
+            sprint.AssignDeveloperToBacklogItem(1, developer);
+
+            // Assert
+            Assert.Equal(developer, backlogItem.Developer);
+        }
+
+        [Fact]
+        public void AssignDeveloperToBacklogItem_Should_Throw_Exception_If_BacklogItem_Not_Found() {
+            // Arrange
+            var sprint = new Sprint();
+            var developer = new Developer();
+
+            // Act & Assert
+            Assert.Throws<InvalidOperationException>(() => sprint.AssignDeveloperToBacklogItem(1, developer));
         }
     }
 }
