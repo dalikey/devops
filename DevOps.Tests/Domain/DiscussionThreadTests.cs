@@ -10,10 +10,10 @@ namespace DevOps.Tests.Domain {
         public void Comment_Should_Be_Added_To_List() {
             // Arrange
             var backlogStateMock = new Mock<IBacklogState>();
-            backlogStateMock.SetupGet(state => state.GetType()).Returns(typeof(TodoState));
-
             var backlogItem = new BacklogItem { BacklogState = backlogStateMock.Object };
-            var discussionThread = new DiscussionThread("Test Title", backlogItem, new List<Message>());
+
+
+            var discussionThread = new DiscussionThread("Test Title", backlogItem, new List<Message>(), backlogStateMock.Object);
             var comment = new DiscussionComment("Test Comment", "Test Author");
 
             // Act
@@ -27,10 +27,9 @@ namespace DevOps.Tests.Domain {
         public void AddComment_Should_Throw_Exception_When_BackLogItem_Is_Completed() {
             // Arrange
             var backlogStateMock = new Mock<IBacklogState>();
-            backlogStateMock.SetupGet(state => state.GetType()).Returns(typeof(DoneState));
-
             var backlogItem = new BacklogItem { BacklogState = backlogStateMock.Object };
-            var discussionThread = new DiscussionThread("Test Title", backlogItem, new List<Message>());
+
+            var discussionThread = new DiscussionThread("Test Title", backlogItem, new List<Message>(), backlogStateMock.Object);
             var comment = new DiscussionComment("Test Comment", "Test Author");
 
             // Act & Assert
@@ -42,10 +41,9 @@ namespace DevOps.Tests.Domain {
         public void InitializeThread_Should_Add_BackLogItem_To_DiscussionThread() {
             // Arrange
             var backlogStateMock = new Mock<IBacklogState>();
-            backlogStateMock.SetupGet(state => state.GetType()).Returns(typeof(TodoState));
             var backlogItem = new BacklogItem { BacklogState = backlogStateMock.Object };
 
-            var discussionThread = new DiscussionThread("Test Title", backlogItem, new List<Message>());
+            var discussionThread = new DiscussionThread("Test Title", backlogItem, new List<Message>(), backlogStateMock.Object);
 
             // Act
             discussionThread.InitializeThread();
@@ -58,9 +56,8 @@ namespace DevOps.Tests.Domain {
         public void InitializeThread_Should_Throw_Exception_If_Sprint_Is_Finished() {
             // Arrange
             var backlogStateMock = new Mock<IBacklogState>();
-            backlogStateMock.SetupGet(state => state.GetType()).Returns(typeof(DoneState));
             var backlogItem = new BacklogItem { BacklogState = backlogStateMock.Object };
-            var discussionThread = new DiscussionThread("Test Title", backlogItem, new List<Message>());
+            var discussionThread = new DiscussionThread("Test Title", backlogItem, new List<Message>(), backlogStateMock.Object);
 
             // Act & Assert
             var exception = Assert.Throws<InvalidOperationException>(() => discussionThread.InitializeThread());
@@ -74,7 +71,7 @@ namespace DevOps.Tests.Domain {
             var backlogStateMock = new Mock<IBacklogState>();
             var backlogItem = new BacklogItem { BacklogState = backlogStateMock.Object };
             var mockCallBack = new Mock<Func<string, Type, int>>();
-            var discussionThread = new DiscussionThread("Test Title", backlogItem, new List<Message>());
+            var discussionThread = new DiscussionThread("Test Title", backlogItem, new List<Message>(), backlogStateMock.Object);
             discussionThread.NotificationCallBack = mockCallBack.Object;
             var comment = new DiscussionComment("Test Comment", "Test Author");
 
