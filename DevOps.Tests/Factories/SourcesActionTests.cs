@@ -16,7 +16,7 @@ namespace DevOps.Tests.Factories {
         }
 
         [Fact]
-        public void CloningRepository_Should_WriteToConsole() {
+        public void CloneRepository_Should_WriteToConsole() {
             // Arrange
             var gitUrl = "https://github.com/example/repo.git";
             var sourcesAction = new SourcesAction { GitURL = gitUrl };
@@ -26,7 +26,7 @@ namespace DevOps.Tests.Factories {
             Console.SetOut(sw);
 
             // Act
-            sourcesAction.CloningRepository();
+            sourcesAction.CloneRepository();
 
             // Assert
             Assert.Contains(expectedOutput, sw.ToString());
