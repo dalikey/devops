@@ -21,7 +21,7 @@ namespace DevOps.States.BacklogState {
 
         public void ReviewTestReport(bool passed) {
             if (passed) {
-                _backlogItem.BacklogState = new TestedState(_backlogItem);
+            _backlogItem.UpdateState(new TestedState(_backlogItem));
             } else {
                 Console.WriteLine("Test failed. Cannot update state.");
             }
