@@ -2,6 +2,14 @@
 
 This project aims to develop a domain for a Scrum/DevOps project management system akin to Azure DevOps or Atlassian Jira. The focus is on utilizing various design patterns in C# to adhere to object-oriented design principles. The project emphasizes the implementation of at least six design patterns, including one creational pattern and a minimum of four different structural/behavioral patterns.
 
+**Feedback for improvement**
+```plaintext
+1. Different patterns are better for certain features. E.g. decorator pattern isn't optimal.
+2. Lines are hardcoded.
+3. Factory pattern should only have one responsibility, creating, nothing else.
+4. Class diagram should have methods.
+```
+
 ## Functional and Non-functional Requirements:
 - **Functional Requirements:**
   - Project management functionalities following Scrum methodology.
