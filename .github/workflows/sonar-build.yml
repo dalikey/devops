@@ -53,3 +53,4 @@ jobs:
                   dotnet build --no-incremental
                   dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
                   .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+
